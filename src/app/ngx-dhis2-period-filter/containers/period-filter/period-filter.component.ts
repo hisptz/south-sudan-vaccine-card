@@ -7,34 +7,34 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-} from '@angular/core';
-import { Fn } from '@iapps/function-analytics';
+} from "@angular/core";
+import { Fn } from "@iapps/function-analytics";
 import {
   NgxDhis2HttpClientService,
   SystemInfo,
-} from '@iapps/ngx-dhis2-http-client';
-import { find, map, flattenDeep, uniqBy, filter } from 'lodash';
+} from "@iapps/ngx-dhis2-http-client";
+import { find, map, flattenDeep, uniqBy, filter } from "lodash";
 
-import { PERIOD_FILTER_CONFIG } from '../../constants/period-filter-config.constant';
-import { getAvailablePeriods } from '../../helpers/get-available-periods.helper';
-import { getSanitizedPeriods } from '../../helpers/get-sanitized-periods.helper';
-import { removePeriodFromList } from '../../helpers/remove-period-from-list.helper';
-import { PeriodFilterConfig } from '../../models/period-filter-config.model';
-import { formatDateToYYMMDD } from '../../helpers/dates-range-picker.helper';
-import { getPeriodTypesByFilterType } from '../../helpers/get-period-types-by-filter-type.helper';
-import { PeriodFilterType } from '../../models/period-filter-type.model';
+import { PERIOD_FILTER_CONFIG } from "../../constants/period-filter-config.constant";
+import { getAvailablePeriods } from "../../helpers/get-available-periods.helper";
+import { getSanitizedPeriods } from "../../helpers/get-sanitized-periods.helper";
+import { removePeriodFromList } from "../../helpers/remove-period-from-list.helper";
+import { PeriodFilterConfig } from "../../models/period-filter-config.model";
+import { formatDateToYYMMDD } from "../../helpers/dates-range-picker.helper";
+import { getPeriodTypesByFilterType } from "../../helpers/get-period-types-by-filter-type.helper";
+import { PeriodFilterType } from "../../models/period-filter-type.model";
 import {
   PERIOD_FILTER_TYPES,
   PeriodFilterTypes,
-} from '../../constants/period-filter-types.constant';
-import { getPeriodFilterTypesByConfig } from '../../helpers/get-period-filter-types-by-config.helper';
-import { getCurrentPeriodFilterType } from '../../helpers/get-current-period-filter-type.helper';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+} from "../../constants/period-filter-types.constant";
+import { getPeriodFilterTypesByConfig } from "../../helpers/get-period-filter-types-by-config.helper";
+import { getCurrentPeriodFilterType } from "../../helpers/get-current-period-filter-type.helper";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
-  selector: 'ngx-dhis2-period-filter',
-  templateUrl: './period-filter.component.html',
-  styleUrls: ['./period-filter.component.css'],
+  selector: "ngx-dhis2-period-filter",
+  templateUrl: "./period-filter.component.html",
+  styleUrls: ["./period-filter.component.css"],
 })
 export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selectedPeriodType: string;
@@ -113,7 +113,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
     this.periodFilterTypeEnum = PeriodFilterTypes;
 
     const lowestPeriodType = find(this.periodTypes, [
-      'id',
+      "id",
       this.periodFilterConfig.lowestPeriodType,
     ]);
 
@@ -161,22 +161,22 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
 
   getDate(dateValue, type) {
     this.selectedPeriods = [];
-    if (type == 'start_date') {
+    if (type == "start_date") {
       this.startDate = formatDateToYYMMDD(dateValue);
       this.minEndDate = new Date(
-        Number(this.startDate.split('-')[0]),
-        Number(this.startDate.split('-')[1]) - 1,
-        Number(this.startDate.split('-')[2]) + 1
+        Number(this.startDate.split("-")[0]),
+        Number(this.startDate.split("-")[1]) - 1,
+        Number(this.startDate.split("-")[2]) + 1
       );
     } else {
       this.endDate = formatDateToYYMMDD(dateValue);
     }
     if (this.startDate && this.endDate) {
       this.selectedPeriods.push({
-        id: 'dates-range',
-        type: 'dates-range',
-        name: this.startDate + ' to ' + this.endDate,
-        dimension: 'ou',
+        id: "dates-range",
+        type: "dates-range",
+        name: this.startDate + " to " + this.endDate,
+        dimension: "ou",
         startDate: {
           id: this.startDate,
           name: this.startDate,
@@ -200,9 +200,9 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
       // Get selected period type if not supplied
       if (!selectedPeriodType) {
         if (this.selectedPeriods[0]) {
-          this.selectedPeriodType = this.selectedPeriods[0].type || 'Monthly';
+          this.selectedPeriodType = this.selectedPeriods[0].type || "Monthly";
         } else {
-          this.selectedPeriodType = 'Monthly';
+          this.selectedPeriodType = "Monthly";
         }
       }
 
@@ -211,7 +211,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
         .setCalendar(systemInfo.keyCalendar)
         .setPreferences({
           childrenPeriodSortOrder:
-            this.periodFilterConfig.childrenPeriodSortOrder || 'DESC',
+            this.periodFilterConfig.childrenPeriodSortOrder || "DESC",
           allowFuturePeriods: true,
         })
         .get();
@@ -245,17 +245,17 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
   onClickToSelectPeriod(period, e, type) {
     if (
       this.periodFilterConfig &&
-      this.periodFilterConfig.hasOwnProperty('singleSelection') &&
+      this.periodFilterConfig.hasOwnProperty("singleSelection") &&
       !this.periodFilterConfig.singleSelection
     ) {
       const { ctrlKey, shiftKey } = e;
       e.stopPropagation();
       switch (type) {
-        case 'SELECT': {
+        case "SELECT": {
           this.updateSelectedPeriodList(period, ctrlKey, shiftKey);
           break;
         }
-        case 'DESELECT': {
+        case "DESELECT": {
           this.updateDeselectedPeriodList(period, ctrlKey, shiftKey);
           break;
         }
@@ -265,11 +265,11 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
       }
     } else {
       switch (type) {
-        case 'SELECT': {
+        case "SELECT": {
           this.updateSingleSelectedPeriodList(period);
           break;
         }
-        case 'DESELECT': {
+        case "DESELECT": {
           this.updateSingleDeselectedPeriodList(period);
           break;
         }
@@ -296,7 +296,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
   updateSelectedPeriodList(period, ctrlKey, shiftKey) {
     if ((ctrlKey && shiftKey) || shiftKey) {
       const periodIndex =
-        period && period.hasOwnProperty('id') && this.availablePeriods
+        period && period.hasOwnProperty("id") && this.availablePeriods
           ? this.availablePeriods.findIndex(
               (availablePeriod) => availablePeriod.id === period.id
             ) || 0
@@ -309,19 +309,19 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
                 ...this.selectedPeriodList,
                 ...this.availablePeriods.slice(0, periodIndex + 1),
               ],
-              'id'
+              "id"
             ) || this.selectedPeriodList
           : [];
     } else if (ctrlKey) {
       const periodInList =
-        period && period.hasOwnProperty('id')
+        period && period.hasOwnProperty("id")
           ? find(
               this.selectedPeriodList || [],
               (selectedPeriod) => selectedPeriod.id === period.id
             )
           : null;
       this.selectedPeriodList =
-        periodInList && periodInList.hasOwnProperty('id')
+        periodInList && periodInList.hasOwnProperty("id")
           ? filter(
               this.selectedPeriodList || [],
               (periodListItem) => periodListItem.id !== periodInList.id
@@ -335,7 +335,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
   updateDeselectedPeriodList(period, ctrlKey, shiftKey) {
     if ((ctrlKey && shiftKey) || shiftKey) {
       const periodIndex =
-        period && period.hasOwnProperty('id') && this.availablePeriods
+        period && period.hasOwnProperty("id") && this.availablePeriods
           ? this.selectedPeriods.findIndex(
               (selectedPeriod) => selectedPeriod.id === period.id
             )
@@ -348,19 +348,19 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
                 ...this.deselectedPeriodList,
                 ...this.selectedPeriods.slice(0, periodIndex + 1),
               ],
-              'id'
+              "id"
             ) || this.deselectedPeriodList
           : [];
     } else if (ctrlKey) {
       const periodInList =
-        period && period.hasOwnProperty('id')
+        period && period.hasOwnProperty("id")
           ? find(
               this.deselectedPeriodList || [],
               (deselectedPeriod) => deselectedPeriod.id === period.id
             )
           : null;
       this.deselectedPeriodList =
-        periodInList && periodInList.hasOwnProperty('id')
+        periodInList && periodInList.hasOwnProperty("id")
           ? filter(
               this.deselectedPeriodList || [],
               (periodListItem) => periodListItem.id !== periodInList.id
@@ -376,7 +376,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
       map(this.selectedPeriodList || [], (periodItem) => {
         this.onSelectPeriod(periodItem, e);
         const periodMoved =
-          periodItem && periodItem.hasOwnProperty('id') && periodItem.id
+          periodItem && periodItem.hasOwnProperty("id") && periodItem.id
             ? find(
                 this.selectedPeriods || [],
                 (selectedPeriod) => selectedPeriod.id === periodItem.id
@@ -392,7 +392,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
       map(this.deselectedPeriodList || [], (periodItem) => {
         this.onDeselectPeriod(periodItem, e);
         const periodMoved =
-          periodItem && periodItem.hasOwnProperty('id') && periodItem.id
+          periodItem && periodItem.hasOwnProperty("id") && periodItem.id
             ? find(
                 this.selectedPeriods || [],
                 (selectedPeriod) => selectedPeriod.id === periodItem.id
@@ -404,7 +404,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   isInArray(arr: any[], id) {
-    const item = find(arr || [], (arrItem) => arrItem.id === id) || '';
+    const item = find(arr || [], (arrItem) => arrItem.id === id) || "";
     return item ? true : false;
   }
 
@@ -432,7 +432,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
     this.selectedPeriodType = selectedPeriodType;
     this.periodInstance.setType(this.selectedPeriodType).get();
     this.currentPeriodFilterType =
-      this.selectedPeriodType.indexOf('Relative') !== -1
+      this.selectedPeriodType.indexOf("Relative") !== -1
         ? PeriodFilterTypes.RELATIVE
         : PeriodFilterTypes.FIXED;
 
@@ -442,7 +442,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
   pushPeriod(e, direction: string) {
     e.stopPropagation();
 
-    if (direction === 'NEXT') {
+    if (direction === "NEXT") {
       this.selectedYear++;
     } else {
       this.selectedYear--;
@@ -503,7 +503,7 @@ export class PeriodFilterComponent implements OnInit, OnChanges, OnDestroy {
   private _getPeriodSelection() {
     return {
       items: this.selectedPeriods,
-      dimension: 'pe',
+      dimension: "pe",
       lowestPeriodType: this.periodFilterConfig.lowestPeriodType,
       changed: true,
     };

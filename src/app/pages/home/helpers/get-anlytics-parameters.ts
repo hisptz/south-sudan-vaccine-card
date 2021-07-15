@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import * as _ from "lodash";
 
 export function getAnalyticsParameters(
   selectedOrgUnitItems: Array<any>,
@@ -19,20 +19,20 @@ export function getAnalyticsParameters(
     (dxConfig: any) => !dxConfig.isAttribute
   );
 
-  const groupedDataElements = _.groupBy(dataElements || [], 'programStage');
+  const groupedDataElements = _.groupBy(dataElements || [], "programStage");
   const groupedDxConfigs = _.mapValues(
     groupedDataElements,
     (programStageDataElements: any[]) => {
       const programStage =
         programStageDataElements.length > 0
           ? programStageDataElements[0].programStage
-          : '';
+          : "";
       const programId =
         programStageDataElements.length > 0
-          ? programStageDataElements[0].program || ''
-          : '';
+          ? programStageDataElements[0].program || ""
+          : "";
       const configs =
-        programId && programId !== ''
+        programId && programId !== ""
           ? [...programStageDataElements]
           : [
               ...programStageDataElements,
@@ -61,8 +61,8 @@ export function getAnalyticsParameters(
               _.map(
                 groupedDxConfigs[programStage] || [],
                 (groupedDxConfig: any) =>
-                  groupedDxConfig.id !== '' &&
-                  groupedDxConfig.programStage !== ''
+                  groupedDxConfig.id !== "" &&
+                  groupedDxConfig.programStage !== ""
                     ? `${groupedDxConfig.programStage}.${groupedDxConfig.id}`
                     : []
               )
@@ -75,14 +75,14 @@ export function getAnalyticsParameters(
                   groupedDxConfigs[programStage] || [],
                   (groupedDxConfig: any) => {
                     return groupedDxConfig.program &&
-                      groupedDxConfig.program !== ''
+                      groupedDxConfig.program !== ""
                       ? groupedDxConfig.program
                       : [];
                   }
                 )
               )
             );
-            const programId = programIds.length > 0 ? programIds[0] : '';
+            const programId = programIds.length > 0 ? programIds[0] : "";
             return { ou, pe, dx, programId };
           } else {
             return [];

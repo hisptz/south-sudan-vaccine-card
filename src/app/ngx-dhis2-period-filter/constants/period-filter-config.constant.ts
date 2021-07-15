@@ -1,4 +1,4 @@
-import { PeriodFilterConfig } from '../models/period-filter-config.model';
+import { PeriodFilterConfig } from "../models/period-filter-config.model";
 
 export const PERIOD_FILTER_CONFIG: PeriodFilterConfig = {
   resetOnPeriodTypeChange: false,
@@ -8,5 +8,5 @@ export const PERIOD_FILTER_CONFIG: PeriodFilterConfig = {
   allowFixedPeriodSelection: true,
   allowRelativePeriodSelection: true,
   hideActionButtons: false,
-  contentHeight: '372px',
+  contentHeight: "372px",
 };

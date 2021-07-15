@@ -1,1 +1,1 @@
-export { RouteSerializer, RouterStateUrl } from './route-serializer.util';
+export { RouteSerializer, RouterStateUrl } from "./route-serializer.util";

@@ -1,7 +1,7 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector } from "@ngrx/store";
 
-import { getRootState, State } from '../reducers';
-import { SystemInfoState } from '../states/system-info.state';
+import { getRootState, State } from "../reducers";
+import { SystemInfoState } from "../states/system-info.state";
 
 export const getSystemInfoState = createSelector(
   getRootState,

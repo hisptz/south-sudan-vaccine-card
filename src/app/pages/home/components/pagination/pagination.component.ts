@@ -5,13 +5,13 @@ import {
   Input,
   OnInit,
   Output,
-} from '@angular/core';
-import { TablePagination } from 'src/app/shared/models/table-pagination.model';
+} from "@angular/core";
+import { TablePagination } from "src/app/shared/models/table-pagination.model";
 
 @Component({
-  selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.css'],
+  selector: "app-pagination",
+  templateUrl: "./pagination.component.html",
+  styleUrls: ["./pagination.component.css"],
 })
 export class PaginationComponent implements OnInit, AfterViewInit {
   @Input() totalItems: number;
@@ -20,12 +20,12 @@ export class PaginationComponent implements OnInit, AfterViewInit {
   itemsPerPage: string[];
   selectedItemsPerPage: string;
   currentlySelectedPage: number;
-  initialItemsPerPage = '50';
+  initialItemsPerPage = "50";
 
   constructor() {}
 
   ngOnInit(): void {
-    this.itemsPerPage = ['50', '100', '500', '1000', '5000', '10000'];
+    this.itemsPerPage = ["50", "100", "500", "1000", "5000", "10000"];
     this.currentlySelectedPage = 1;
     this.selectedItemsPerPage = this.initialItemsPerPage;
     this.onPaginate();

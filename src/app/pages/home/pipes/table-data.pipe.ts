@@ -1,8 +1,8 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import * as _ from 'lodash';
+import { Pipe, PipeTransform } from "@angular/core";
+import * as _ from "lodash";
 
 @Pipe({
-  name: 'tableData',
+  name: "tableData",
 })
 export class TableDataPipe implements PipeTransform {
   transform(dataValues: any[]): Array<string[]> {

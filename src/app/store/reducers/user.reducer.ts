@@ -1,16 +1,16 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on } from "@ngrx/store";
 
 import {
   addCurrentUser,
   loadCurrentUser,
   loadCurrentUserFail,
-} from '../actions/user.actions';
-import { initialUserState, UserState } from '../states/user.state';
+} from "../actions/user.actions";
+import { initialUserState, UserState } from "../states/user.state";
 import {
   loadingBaseState,
   loadedBaseState,
   errorBaseState,
-} from '../states/base.state';
+} from "../states/base.state";
 
 export const reducer = createReducer(
   initialUserState,

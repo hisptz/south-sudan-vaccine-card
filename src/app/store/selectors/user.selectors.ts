@@ -1,8 +1,8 @@
-import { createSelector } from '@ngrx/store';
-import { getRootState, State } from '../reducers';
-import { UserState } from '../states/user.state';
-import { User } from '@iapps/ngx-dhis2-http-client';
-import * as _ from 'lodash';
+import { createSelector } from "@ngrx/store";
+import { getRootState, State } from "../reducers";
+import { UserState } from "../states/user.state";
+import { User } from "@iapps/ngx-dhis2-http-client";
+import * as _ from "lodash";
 
 export const getUserState = createSelector(
   getRootState,
@@ -44,7 +44,7 @@ export const isCurrentUserHasCountryLevelOrganisationUnit = createSelector(
     const countryLevelOrganisationUnit = _.find(
       organisationUnits,
       (organisationUnit) =>
-        organisationUnit.level && `${organisationUnit.level}` === '1'
+        organisationUnit.level && `${organisationUnit.level}` === "1"
     );
     return countryLevelOrganisationUnit ? true : false;
   }
@@ -70,7 +70,7 @@ export const getCurrentUserManagementAuthoritiesStatus = createSelector(
     }
 
     return currentUser && currentUser.authorities
-      ? currentUser.authorities.includes('ALL')
+      ? currentUser.authorities.includes("ALL")
       : false;
   }
 );

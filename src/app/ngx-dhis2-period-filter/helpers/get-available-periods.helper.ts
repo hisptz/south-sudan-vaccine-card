@@ -4,7 +4,7 @@ export function getAvailablePeriods(selectedPeriods: any[], periods = []) {
     (period: any) =>
       !(selectedPeriods || []).find(
         (selectedPeriod: any) =>
-          (selectedPeriod.id || '').toString() === (period.id || '').toString()
+          (selectedPeriod.id || "").toString() === (period.id || "").toString()
       )
   );
 }

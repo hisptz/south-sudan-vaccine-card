@@ -1,5 +1,5 @@
-import { Fn } from '@iapps/function-analytics';
-import { PeriodFilterConfig } from '../models/period-filter-config.model';
+import { Fn } from "@iapps/function-analytics";
+import { PeriodFilterConfig } from "../models/period-filter-config.model";
 
 export function getPeriodName(
   id: string,
@@ -14,18 +14,18 @@ export function getPeriodName(
   const periodInstance = new Fn.Period();
 
   switch (type) {
-    case 'RelativeMonth':
-    case 'RelativeQuarter':
-    case 'RelativeYear':
-    case 'RelativeWeek':
-    case 'RelativeBiMonth':
-    case 'RelativeFinancialYear': {
+    case "RelativeMonth":
+    case "RelativeQuarter":
+    case "RelativeYear":
+    case "RelativeWeek":
+    case "RelativeBiMonth":
+    case "RelativeFinancialYear": {
       periodInstance
         .setType(type)
         .setCalendar(calendar)
         .setPreferences({
           childrenPeriodSortOrder:
-            (periodConfig && periodConfig.childrenPeriodSortOrder) || 'DESC',
+            (periodConfig && periodConfig.childrenPeriodSortOrder) || "DESC",
         })
         .get();
       const period = (periodInstance.list() || []).find(
@@ -42,7 +42,7 @@ export function getPeriodName(
         .setCalendar(calendar)
         .setPreferences({
           childrenPeriodSortOrder:
-            (periodConfig && periodConfig.childrenPeriodSortOrder) || 'DESC',
+            (periodConfig && periodConfig.childrenPeriodSortOrder) || "DESC",
         })
         .get();
       const period = (periodInstance.list() || []).find(

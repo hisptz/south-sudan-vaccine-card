@@ -1,6 +1,6 @@
-import { getPeriodType } from './get-period-type.helper';
-import { getPeriodName } from './get-period-name.helper';
-import { PeriodFilterConfig } from '../models/period-filter-config.model';
+import { getPeriodType } from "./get-period-type.helper";
+import { getPeriodName } from "./get-period-name.helper";
+import { PeriodFilterConfig } from "../models/period-filter-config.model";
 
 export function getSanitizedPeriods(
   periods: any[],

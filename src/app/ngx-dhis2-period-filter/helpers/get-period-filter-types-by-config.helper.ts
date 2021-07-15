@@ -1,6 +1,6 @@
-import { PeriodFilterType } from '../models/period-filter-type.model';
-import { PeriodFilterConfig } from '../models/period-filter-config.model';
-import { PeriodFilterTypes } from '../constants/period-filter-types.constant';
+import { PeriodFilterType } from "../models/period-filter-type.model";
+import { PeriodFilterConfig } from "../models/period-filter-config.model";
+import { PeriodFilterTypes } from "../constants/period-filter-types.constant";
 
 export function getPeriodFilterTypesByConfig(
   periodFilterTypes: PeriodFilterType[],

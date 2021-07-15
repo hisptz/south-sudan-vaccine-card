@@ -1,4 +1,4 @@
-import { PeriodFilterTypes } from '../constants/period-filter-types.constant';
+import { PeriodFilterTypes } from "../constants/period-filter-types.constant";
 
 export function getCurrentPeriodFilterType(
   periodFilterTypes: any[],
@@ -15,21 +15,21 @@ export function getCurrentPeriodFilterType(
     /**
      * Check if period filter type is period range
      */
-    if (selectedPeriodType.indexOf('Range') !== -1) {
+    if (selectedPeriodType.indexOf("Range") !== -1) {
       return PeriodFilterTypes.DATE_RANGE;
     }
 
     /**
      * Check if period filter type is relative
      */
-    if (selectedPeriodType.indexOf('Relative') !== -1) {
+    if (selectedPeriodType.indexOf("Relative") !== -1) {
       return PeriodFilterTypes.RELATIVE;
     }
 
     /**
      * Check if period filter type is fixed
      */
-    if (selectedPeriodType.indexOf('Fixed') !== -1) {
+    if (selectedPeriodType.indexOf("Fixed") !== -1) {
       return PeriodFilterTypes.FIXED;
     }
   }

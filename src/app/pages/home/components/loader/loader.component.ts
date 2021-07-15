@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { State } from 'src/app/store/reducers';
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { State } from "src/app/store/reducers";
 
 @Component({
-  selector: 'app-loader',
-  templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.css'],
+  selector: "app-loader",
+  templateUrl: "./loader.component.html",
+  styleUrls: ["./loader.component.css"],
 })
 export class LoaderComponent implements OnInit {
   bufferProgressValue$: Observable<number>;
@@ -16,7 +16,7 @@ export class LoaderComponent implements OnInit {
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.progressBarMode = 'buffer';
+    this.progressBarMode = "buffer";
     // this.overallProgressValue$ = this.store.select(getCurrentOverAllProgress);
     // this.bufferProgressValue$ = this.store.select(getCurrentBufferProgress);
   }

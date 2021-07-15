@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { PeriodFilterConfig } from 'src/app/ngx-dhis2-period-filter/models/period-filter-config.model';
+import { Component, OnInit, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { PeriodFilterConfig } from "src/app/ngx-dhis2-period-filter/models/period-filter-config.model";
 
 @Component({
-  selector: 'app-pe-selection',
-  templateUrl: './pe-selection.component.html',
-  styleUrls: ['./pe-selection.component.css'],
+  selector: "app-pe-selection",
+  templateUrl: "./pe-selection.component.html",
+  styleUrls: ["./pe-selection.component.css"],
 })
 export class PeSelectionComponent implements OnInit {
   periodFilterConfig: PeriodFilterConfig;
@@ -24,7 +24,7 @@ export class PeSelectionComponent implements OnInit {
       allowDateRangeSelection: false,
       allowRelativePeriodSelection: true,
       allowFixedPeriodSelection: true,
-      contentHeight: '400px',
+      contentHeight: "400px",
     };
   }
 

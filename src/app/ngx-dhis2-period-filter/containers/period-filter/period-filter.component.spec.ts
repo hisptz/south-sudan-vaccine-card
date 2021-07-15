@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PeriodFilterComponent } from './period-filter.component';
+import { PeriodFilterComponent } from "./period-filter.component";
 
-describe('PeriodFilterComponent', () => {
+describe("PeriodFilterComponent", () => {
   let component: PeriodFilterComponent;
   let fixture: ComponentFixture<PeriodFilterComponent>;
 
@@ -18,7 +18,7 @@ describe('PeriodFilterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

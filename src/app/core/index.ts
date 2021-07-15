@@ -1,2 +1,2 @@
-export { CoreModule } from './core.module';
-export { RouteSerializer, RouterStateUrl } from './utils';
+export { CoreModule } from "./core.module";
+export { RouteSerializer, RouterStateUrl } from "./utils";

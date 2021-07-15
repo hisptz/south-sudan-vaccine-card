@@ -1,24 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import * as _ from 'lodash';
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { MatDialog } from "@angular/material/dialog";
+import { Observable } from "rxjs";
+import * as _ from "lodash";
 
-import { PeSelectionComponent } from '../../components/pe-selection/pe-selection.component';
-import { OuSelectionComponent } from '../../components/ou-selection/ou-selection.component';
-import { getDefaultOrganisationUnitSelections } from '../../helpers/get-dafault-selections';
-import { State } from 'src/app/store/reducers';
+import { PeSelectionComponent } from "../../components/pe-selection/pe-selection.component";
+import { OuSelectionComponent } from "../../components/ou-selection/ou-selection.component";
+import { getDefaultOrganisationUnitSelections } from "../../helpers/get-dafault-selections";
+import { State } from "src/app/store/reducers";
 import {
   getCurrentUserOrganisationUnits,
   isCurrentUserHasCountryLevelOrganisationUnit,
-} from 'src/app/store/selectors';
-import { take } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material/snack-bar';
+} from "src/app/store/selectors";
+import { take } from "rxjs/operators";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
   selectedPeriods: Array<any>;
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private store: Store<State>,
-    private snackbar: MatSnackBar,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -58,10 +58,10 @@ export class HomeComponent implements OnInit {
         }
       });
   }
-  
+
   openOrganisationUnitFilter() {
-    const width = '800px';
-    const height = '700px';
+    const width = "800px";
+    const height = "700px";
     const selectionDialog = this.dialog.open(OuSelectionComponent, {
       width,
       height,
@@ -78,8 +78,8 @@ export class HomeComponent implements OnInit {
   }
 
   openPeriodFilter() {
-    const width = '800px';
-    const height = '600px';
+    const width = "800px";
+    const height = "600px";
     const selectionDialog = this.dialog.open(PeSelectionComponent, {
       width,
       height,
@@ -88,18 +88,16 @@ export class HomeComponent implements OnInit {
       },
     });
     selectionDialog.afterClosed().subscribe((dialogData: any) => {
-      if (dialogData && dialogData.action && dialogData.action === 'UPDATE') {
+      if (dialogData && dialogData.action && dialogData.action === "UPDATE") {
         this.selectedPeriods =
           dialogData.selectedPeriods.items || this.selectedPeriods;
       }
     });
   }
 
-  presentSnackBar(message: string, action = '') {
+  presentSnackBar(message: string, action = "") {
     this.snackbar.open(message, _.upperCase(action), {
       duration: 1000,
     });
   }
-
-  
 }

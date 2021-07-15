@@ -1,4 +1,4 @@
-import { uniqBy } from 'lodash';
+import { uniqBy } from "lodash";
 export function addPeriodToList(periodList: any[], period: any) {
   if (!period) {
     return periodList;
@@ -12,7 +12,7 @@ export function addPeriodToList(periodList: any[], period: any) {
   )
     ? uniqBy(
         [...periodList, period].sort((a, b) => b.id - a.id),
-        'id'
+        "id"
       )
     : periodList;
 }
