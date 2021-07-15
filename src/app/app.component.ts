@@ -20,7 +20,7 @@ export class AppComponent {
     this.translate.use('en');
 
     // Set application title
-    this.setTitle('Custom Report');
+    this.setTitle('South Sudan Vaccine Card');
 
     if (Fn) {
       Fn.init({

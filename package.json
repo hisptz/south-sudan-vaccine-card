@@ -1,10 +1,10 @@
 {
-  "name": "kb-custom-report",
+  "name": "south-sudan-vaccine-card",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --aot && cd dist/kb-custom-report && zip -r -D kb-custom-report.zip .",
+    "build": "ng build --prod --aot && cd dist/south-sudan-vaccine-card && zip -r -D south-sudan-vaccine-card.zip .",
     "test": "ng test",
     "test:travis": "ng test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
