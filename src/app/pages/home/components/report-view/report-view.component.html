@@ -1,0 +1,25 @@
+<div
+  *ngIf="
+    !(currentAnalyticsError$ | async) && !(currentAnalyticsLoading$ | async)
+  "
+>
+  <div
+    *ngIf="
+      (currentAnalytics$ | async) && (currentAnalytics$ | async).length > 0
+    "
+  >
+    <app-report-table
+      [currentAnalytics]="currentAnalytics$ | async"
+    ></app-report-table>
+  </div>
+
+  <div
+    *ngIf="
+      (currentAnalytics$ | async) && (currentAnalytics$ | async).length === 0
+    "
+  >
+    <p style="text-align: center">
+      There are no available data for the selections!
+    </p>
+  </div>
+</div>
