@@ -12,7 +12,7 @@ import { TableHeadersPipe } from "./pipes/table-headers.pipe";
 import { TableDataPipe } from "./pipes/table-data.pipe";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { PaginationPipe } from "./pipes/pagination.pipe";
-import { ReportNamePipe } from "./pipes/report-name.pipe";
+import { CurrentSelectionComponent } from "./components/current-selection/current-selection.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { ReportNamePipe } from "./pipes/report-name.pipe";
     TableDataPipe,
     PaginationComponent,
     PaginationPipe,
-    ReportNamePipe,
+    CurrentSelectionComponent,
   ],
   imports: [CommonModule, SharedModule, HomeRoutingModule],
   entryComponents: [],
