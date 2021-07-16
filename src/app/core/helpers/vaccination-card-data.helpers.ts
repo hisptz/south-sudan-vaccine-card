@@ -1,8 +1,5 @@
 import * as _ from "lodash";
-import {
-  VaccinationCard,
-  VaccinationCardHeader,
-} from "../models/vaccination-card";
+import { VaccinationCardHeader } from "../models/vaccination-card";
 
 export function getProgressPercentage(numerator: number, denominator: number) {
   const percentageValue = ((numerator / denominator) * 100).toFixed(0);
@@ -15,7 +12,7 @@ export function getSanitizedVaccinationCardData(
   headerConfigs: Array<VaccinationCardHeader>,
   program: string,
   programStage: string
-): Array<VaccinationCard> {
+) {
   return _.uniqBy(
     _.flattenDeep(
       _.map(teiResponse, (teiData: any) => {
@@ -47,7 +44,7 @@ export function getSanitizedVaccinationCardData(
           const headers: Array<VaccinationCardHeader> = _.map(
             headerConfigs,
             (headerConfig: VaccinationCardHeader) => {
-              // get data element && attributes option set and value types form programs
+              //@TODO get data element && attributes option set and value types from program
               let value = getVaccinationCardListHeaderValue(
                 headerConfig,
                 attributes,
@@ -71,7 +68,7 @@ export function getSanitizedVaccinationCardData(
 function getVaccinationCardListHeaderValue(
   headerConfig: VaccinationCardHeader,
   attributes: any,
-  vaccineDoes: any,
+  vaccineDoses: any,
   organisationUnits: any,
   orgUnit: string
 ) {
@@ -83,23 +80,55 @@ function getVaccinationCardListHeaderValue(
       orgUnit
     );
   } else if (!headerConfig.isDataElement) {
-    const attributeObj = _.find(
-      attributes,
-      (data) => data && data.attribute && data.attribute == headerConfig.id
-    );
-    value = attributeObj && attributeObj.value ? attributeObj.value : value;
+    value = getValueFromAttributes(attributes, headerConfig, value);
   } else if (
     headerConfig.hasOwnProperty("doseIndex") &&
     headerConfig.isDataElement
   ) {
-    console.log({ vaccineDoes });
+    if (typeof vaccineDoses[headerConfig.doseIndex] !== "undefined") {
+      const vaccineDose = vaccineDoses[headerConfig.doseIndex];
+      value = getValueFromEventDataValue(vaccineDose, headerConfig, value);
+    }
   } else if (
     !headerConfig.hasOwnProperty("doseIndex") &&
     headerConfig.isDataElement
   ) {
-    console.log({ headerConfig, vaccineDoes });
+    for (const vaccineDose of vaccineDoses) {
+      value = getValueFromEventDataValue(vaccineDose, headerConfig, value);
+    }
   }
+  return value;
+}
 
+function getValueFromAttributes(
+  attributes: any,
+  headerConfig: VaccinationCardHeader,
+  value: string
+) {
+  const attributeObj = _.find(
+    attributes,
+    (data: any) => data && data.attribute && data.attribute == headerConfig.id
+  );
+  value = attributeObj && attributeObj.value ? attributeObj.value : value;
+  return value;
+}
+
+function getValueFromEventDataValue(
+  vaccineDose: any,
+  headerConfig: VaccinationCardHeader,
+  value: string
+) {
+  const dataValueObj = _.find(
+    _.concat(vaccineDose.dataValues || [], {
+      dataElement: "eventDate",
+      value: vaccineDose.eventDate || "",
+    }),
+    (data: any) =>
+      data && data.dataElement && data.dataElement == headerConfig.id
+  );
+  if (dataValueObj && value == "") {
+    value = dataValueObj.value || value;
+  }
   return value;
 }
 

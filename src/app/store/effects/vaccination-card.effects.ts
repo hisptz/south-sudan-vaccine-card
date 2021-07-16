@@ -53,7 +53,7 @@ export class VaccinationCardDataEffects {
     selectedOrgUnits: Array<any>
   ) {
     const pageSize = 15;
-    const vaccinationCardData: Array<VaccinationCard> = [];
+    const vaccinationCardData = [];
     const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,programStage,dataValues[dataElement,value]]]`;
     const urlsWithPaginations = [];
     try {
@@ -99,15 +99,15 @@ export class VaccinationCardDataEffects {
             overAllProcessCount,
             totalOverAllProcess
           );
-          const d = getSanitizedVaccinationCardData(
-            response,
-            organisationUnits,
-            headerConfigs,
-            program,
-            programStage
+          vaccinationCardData.push(
+            getSanitizedVaccinationCardData(
+              response,
+              organisationUnits,
+              headerConfigs,
+              program,
+              programStage
+            )
           );
-          console.log("\n\n");
-          console.log({ d });
         }
       }
     } catch (error) {
