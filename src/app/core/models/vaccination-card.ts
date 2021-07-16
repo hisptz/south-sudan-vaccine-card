@@ -9,5 +9,6 @@ export interface VaccinationCardHeader {
   isDataElement: boolean;
   isBoolean: boolean;
   isDate: boolean;
+  isVisibleOnList: boolean;
   value?: string;
 }

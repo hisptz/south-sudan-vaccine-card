@@ -13,7 +13,7 @@
 					<button
 						class="no-outline"
 						mat-stroked-button
-						[disabled]="!shouldGenerateReport && !(isLoading$ | async)"
+						[disabled]="!shouldGenerateReport || (isLoading$ | async)"
 						(click)="openGenerateReport()"
 					>
 						Generate Report</button
