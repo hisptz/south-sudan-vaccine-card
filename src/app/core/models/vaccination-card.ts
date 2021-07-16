@@ -10,5 +10,7 @@ export interface VaccinationCardHeader {
   isBoolean: boolean;
   isDate: boolean;
   isVisibleOnList: boolean;
+  organisationUnitLevel?: number;
+  doseIndex?: number;
   value?: string;
 }

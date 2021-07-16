@@ -51,14 +51,14 @@ export class VaccinationCardDataEffects {
   ) {
     const pageSize = 2;
     const vaccinationCardData: Array<VaccinationCard> = [];
-    const fields = `fields=trackedEntityInstance,orgUnit,attributes[attribute,value],enrollments[program,orgUnit,incidentDate,enrollmentDate,events[event,eventDate,program,programStage,dataValues[dataElement,value]]]`;
+    const fields = `fields=trackedEntityInstance,orgUnit,attributes[attribute,value],enrollments[program,orgUnit,incidentDate,enrollmentDate,events[eventDate,program,programStage,dataValues[dataElement,value]]]`;
     const urlsWithPaginations = [];
     try {
       let totalOverAllProcess = 0;
       let overAllProcessCount = 0;
       let bufferProcessCount = 0;
       const { headerConfigs, program, programStage } = vaccinationCardConfigs;
-      // const organisationUnits = await this.getAllOrganisationUnits();
+      const organisationUnits = await this.getAllOrganisationUnits();
       for (const selectedOrgUnit of selectedOrgUnits) {
         if (selectedOrgUnit && selectedOrgUnit.id) {
           const url = `trackedEntityInstances.json?ou=${selectedOrgUnit.id}&ouMode=DESCENDANTS&program=${program}`;
@@ -96,6 +96,7 @@ export class VaccinationCardDataEffects {
             overAllProcessCount,
             totalOverAllProcess
           );
+          // @TODO sanitize data for resporting;
           console.log(response);
         }
       }
