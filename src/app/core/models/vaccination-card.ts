@@ -1,6 +1,5 @@
 export interface VaccinationCard {
-  programId: string;
-  programStageId: string;
+  tei:string;
   headers: Array<VaccinationCardHeader>;
 }
 
@@ -10,4 +9,5 @@ interface VaccinationCardHeader {
   isDataElement: boolean;
   isBoolean: boolean;
   isDate: boolean;
+  value:string;
 }
