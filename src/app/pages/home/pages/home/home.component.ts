@@ -4,17 +4,20 @@ import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import * as _ from "lodash";
 
-import * as vaccinationCardConfigs from 'src/app/core/configs/vaccination-card-config.json';
+import * as vaccinationCardConfigs from "src/app/core/configs/vaccination-card-config.json";
 
 import { PeSelectionComponent } from "../../components/pe-selection/pe-selection.component";
 import { OuSelectionComponent } from "../../components/ou-selection/ou-selection.component";
 import { getDefaultOrganisationUnitSelections } from "../../helpers/get-dafault-selections";
 import { State } from "src/app/store/reducers";
-import {
-  getCurrentUserOrganisationUnits,
-} from "src/app/store/selectors";
+import { getCurrentUserOrganisationUnits } from "src/app/store/selectors";
 import { take } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { getVaccinationCardDataLoadingStatus } from "src/app/store/selectors/vaccination-card-selector";
+import {
+  ClearVaccinationCardData,
+  LoadVaccinationCardData,
+} from "src/app/store/actions";
 
 @Component({
   selector: "app-home",
@@ -25,7 +28,7 @@ export class HomeComponent implements OnInit {
   selectedPeriods: Array<any>;
   selectedOrgUnits: Array<any>;
   isLoading$: Observable<boolean>;
-  shouldGenerateReport :boolean;
+  shouldGenerateReport: boolean;
 
   constructor(
     private dialog: MatDialog,
@@ -34,6 +37,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading$ = this.store.select(getVaccinationCardDataLoadingStatus);
     this.selectedPeriods = [];
     this.store
       .select(getCurrentUserOrganisationUnits)
@@ -51,8 +55,9 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  updateGenerateReportButtonStatus(){
-    this.shouldGenerateReport = this.selectedOrgUnits.length > 0 && this.selectedPeriods.length > 0;
+  updateGenerateReportButtonStatus() {
+    this.shouldGenerateReport =
+      this.selectedOrgUnits.length > 0 && this.selectedPeriods.length > 0;
   }
 
   openOrganisationUnitFilter() {
@@ -69,13 +74,20 @@ export class HomeComponent implements OnInit {
       if (dialogData && dialogData.action) {
         this.selectedOrgUnits =
           dialogData.selectedOrgUnitItems.items || this.selectedOrgUnits;
-          this.updateGenerateReportButtonStatus();
+        this.updateGenerateReportButtonStatus();
       }
     });
   }
 
-  openGenerateReport(){
-    console.log({vaccinationCardConfigs, selectedPeriods : this.selectedPeriods,selectedOrgUnits : this.selectedOrgUnits})
+  openGenerateReport() {
+    this.store.dispatch(ClearVaccinationCardData());
+    this.store.dispatch(
+      LoadVaccinationCardData({
+        vaccinationCardConfigs,
+        selectedOrgUnits: this.selectedOrgUnits,
+        selectedPeriods: this.selectedPeriods,
+      })
+    );
   }
 
   openPeriodFilter() {
@@ -92,7 +104,7 @@ export class HomeComponent implements OnInit {
       if (dialogData && dialogData.action && dialogData.action === "UPDATE") {
         this.selectedPeriods =
           dialogData.selectedPeriods.items || this.selectedPeriods;
-          this.updateGenerateReportButtonStatus();
+        this.updateGenerateReportButtonStatus();
       }
     });
   }

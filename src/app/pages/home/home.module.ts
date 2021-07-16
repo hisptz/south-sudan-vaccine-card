@@ -12,7 +12,7 @@ import { TableHeadersPipe } from "./pipes/table-headers.pipe";
 import { TableDataPipe } from "./pipes/table-data.pipe";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { PaginationPipe } from "./pipes/pagination.pipe";
-import { CurrentSelectionComponent } from './components/current-selection/current-selection.component';
+import { CurrentSelectionComponent } from "./components/current-selection/current-selection.component";
 
 @NgModule({
   declarations: [

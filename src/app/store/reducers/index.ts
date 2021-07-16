@@ -14,15 +14,14 @@ export interface State {
   user: UserState;
   systemInfo: SystemInfoState;
   router: RouterReducerState;
-  vaccinationCard : VaccinationCardState,
+  vaccinationCard: VaccinationCardState;
 }
 
 export const reducers: ActionReducerMap<State> = {
   user: userReducer,
   systemInfo: systemInfoReducer,
   router: routerReducer,
-  vaccinationCard : vaccinationCardDataReducer,
-
+  vaccinationCard: vaccinationCardDataReducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production

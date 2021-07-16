@@ -1,5 +1,5 @@
 export interface VaccinationCard {
-  tei:string;
+  tei: string;
   headers: Array<VaccinationCardHeader>;
 }
 
@@ -9,5 +9,5 @@ interface VaccinationCardHeader {
   isDataElement: boolean;
   isBoolean: boolean;
   isDate: boolean;
-  value:string;
+  value: string;
 }

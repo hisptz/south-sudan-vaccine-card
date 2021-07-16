@@ -11,26 +11,35 @@ export enum VaccinationCardActionTypes {
   LoadVaccinationCardDataFail = "[Vaccination Card] Load Vaccination Card Data fail",
 }
 
-export const LoadVaccinationCardData = createAction(VaccinationCardActionTypes.LoadVaccinationCardData,  props<{ vaccinationCardConfigs :any, selectedPeriods : any,selectedOrgUnits :any}>());
+export const LoadVaccinationCardData = createAction(
+  VaccinationCardActionTypes.LoadVaccinationCardData,
+  props<{
+    vaccinationCardConfigs: any;
+    selectedPeriods: any;
+    selectedOrgUnits: any;
+  }>()
+);
 
 export const AddVaccinationCardData = createAction(
-    VaccinationCardActionTypes.AddVaccinationCardData,
+  VaccinationCardActionTypes.AddVaccinationCardData,
   props<{ vaccinationCardData: Array<VaccinationCard> }>()
 );
 
 export const UpdateVaccinationCardDataProgress = createAction(
-    VaccinationCardActionTypes.UpdateVaccinationCardDataProgress,
-    props<{ overAllProgress: number; bufferProgress: number }>()
-  );
+  VaccinationCardActionTypes.UpdateVaccinationCardDataProgress,
+  props<{ overAllProgress: number; bufferProgress: number }>()
+);
 
-  export const SetSelectedVaccinationCard = createAction(
-    VaccinationCardActionTypes.SetSelectedVaccinationCard,
+export const SetSelectedVaccinationCard = createAction(
+  VaccinationCardActionTypes.SetSelectedVaccinationCard,
   props<{ selectedVaccinationCardId: string }>()
 );
 
-  export const ClearVaccinationCardData = createAction(VaccinationCardActionTypes.ClearVaccinationCardData);
+export const ClearVaccinationCardData = createAction(
+  VaccinationCardActionTypes.ClearVaccinationCardData
+);
 
 export const LoadVaccinationCardDataFail = createAction(
-    VaccinationCardActionTypes.LoadVaccinationCardDataFail,
+  VaccinationCardActionTypes.LoadVaccinationCardDataFail,
   props<{ error: ErrorMessage }>()
 );

@@ -2,6 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { State } from "src/app/store/reducers";
+import {
+  getCurrentOverAllProgress,
+  getCurrentBufferProgress,
+} from "src/app/store/selectors/vaccination-card-selector";
 
 @Component({
   selector: "app-loader",
@@ -17,7 +21,7 @@ export class LoaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.progressBarMode = "buffer";
-    // this.overallProgressValue$ = this.store.select(getCurrentOverAllProgress);
-    // this.bufferProgressValue$ = this.store.select(getCurrentBufferProgress);
+    this.overallProgressValue$ = this.store.select(getCurrentOverAllProgress);
+    this.bufferProgressValue$ = this.store.select(getCurrentBufferProgress);
   }
 }
