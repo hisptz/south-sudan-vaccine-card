@@ -15,7 +15,10 @@ import { Store } from "@ngrx/store";
 import { State } from "../reducers";
 import { getFormattedDate } from "src/app/core/utils/date-formatter.util";
 import { VaccinationCard } from "src/app/core/models/vaccination-card";
-import { getProgressPercentage } from "src/app/core/helpers/vaccination-card-data.helpers";
+import {
+  getProgressPercentage,
+  getSanitizedVaccinationCardData,
+} from "src/app/core/helpers/vaccination-card-data.helpers";
 
 @Injectable()
 export class VaccinationCardDataEffects {
@@ -49,16 +52,16 @@ export class VaccinationCardDataEffects {
     vaccinationCardConfigs: any,
     selectedOrgUnits: Array<any>
   ) {
-    const pageSize = 2;
+    const pageSize = 15;
     const vaccinationCardData: Array<VaccinationCard> = [];
-    const fields = `fields=trackedEntityInstance,orgUnit,attributes[attribute,value],enrollments[program,orgUnit,incidentDate,enrollmentDate,events[eventDate,program,programStage,dataValues[dataElement,value]]]`;
+    const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,programStage,dataValues[dataElement,value]]]`;
     const urlsWithPaginations = [];
     try {
       let totalOverAllProcess = 0;
       let overAllProcessCount = 0;
       let bufferProcessCount = 0;
       const { headerConfigs, program, programStage } = vaccinationCardConfigs;
-      const organisationUnits = await this.getAllOrganisationUnits();
+      const organisationUnits: any = await this.getAllOrganisationUnits();
       for (const selectedOrgUnit of selectedOrgUnits) {
         if (selectedOrgUnit && selectedOrgUnit.id) {
           const url = `trackedEntityInstances.json?ou=${selectedOrgUnit.id}&ouMode=DESCENDANTS&program=${program}`;
@@ -96,8 +99,15 @@ export class VaccinationCardDataEffects {
             overAllProcessCount,
             totalOverAllProcess
           );
-          // @TODO sanitize data for resporting;
-          console.log(response);
+          const d = getSanitizedVaccinationCardData(
+            response,
+            organisationUnits,
+            headerConfigs,
+            program,
+            programStage
+          );
+          console.log("\n\n");
+          console.log({ d });
         }
       }
     } catch (error) {
@@ -132,7 +142,10 @@ export class VaccinationCardDataEffects {
               (organisationUnit: any) => {
                 const { level, name, ancestors } = organisationUnit;
                 ancestors.push({ name, level });
-                return _.omit({ ...location, ancestors }, ["level", "name"]);
+                return _.omit({ ...organisationUnit, ancestors }, [
+                  "level",
+                  "name",
+                ]);
               }
             );
             resolve(organisationUnits);

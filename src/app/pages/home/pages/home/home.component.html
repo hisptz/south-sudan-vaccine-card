@@ -6,6 +6,7 @@
 					<button
 						class="no-outline"
 						mat-stroked-button
+						[disabled]="isLoading$ | async"
 						(click)="openOrganisationUnitFilter()"
 					>
 						Organisation Unit Selection</button
