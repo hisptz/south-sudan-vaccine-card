@@ -9,9 +9,11 @@ import * as vaccinationCardConfigs from "src/app/core/configs/vaccination-card-c
 import { OuSelectionComponent } from "../../components/ou-selection/ou-selection.component";
 import { getDefaultOrganisationUnitSelections } from "../../helpers/get-dafault-selections";
 import { State } from "src/app/store/reducers";
-import { getCurrentUserOrganisationUnits } from "src/app/store/selectors";
+import {
+  getCurrentUserOrganisationUnits,
+  getVaccinationCardDataLoadingStatus,
+} from "src/app/store/selectors";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { getVaccinationCardDataLoadingStatus } from "src/app/store/selectors/vaccination-card-selector";
 import {
   ClearVaccinationCardData,
   LoadVaccinationCardData,

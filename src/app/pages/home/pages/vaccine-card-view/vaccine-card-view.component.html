@@ -1,0 +1,16 @@
+<div class="app-container">
+	<div class="row">
+		<div class="col">
+			<div class="d-flex justify-content-between">
+				<div>
+					<button class="no-outline" mat-stroked-button (click)="goBackHome()">
+						Go Home</button
+					>&nbsp;&nbsp;
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		{{ selectedVaccinationCard$ | async | json }}
+	</div>
+</div>
