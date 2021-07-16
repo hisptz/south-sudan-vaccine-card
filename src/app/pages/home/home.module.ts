@@ -13,6 +13,10 @@ import { TableDataPipe } from "./pipes/table-data.pipe";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { PaginationPipe } from "./pipes/pagination.pipe";
 import { CurrentSelectionComponent } from "./components/current-selection/current-selection.component";
+import { ReportViewComponent } from "./components/report-view/report-view.component";
+import { ReportTableComponent } from "./components/report-table/report-table.component";
+import { TableListSearchPipe } from "./pipes/table-list-search.pipe";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,14 +24,17 @@ import { CurrentSelectionComponent } from "./components/current-selection/curren
     OuSelectionComponent,
     PeSelectionComponent,
     LoaderComponent,
+    ReportViewComponent,
+    CurrentSelectionComponent,
     SelectionNamePipe,
     TableHeadersPipe,
     TableDataPipe,
     PaginationComponent,
     PaginationPipe,
-    CurrentSelectionComponent,
+    ReportTableComponent,
+    TableListSearchPipe,
   ],
-  imports: [CommonModule, SharedModule, HomeRoutingModule],
+  imports: [CommonModule, SharedModule, HomeRoutingModule, FormsModule],
   entryComponents: [],
 })
 export class HomeModule {}

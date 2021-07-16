@@ -16,24 +16,8 @@ export const getVaccinationCardList = createSelector(
 
 export const getSelectedVaccinationCard = createSelector(
   getVaccinationCardDataState,
-  (state: VaccinationCardState) => state.selectedVaccinationCardId
+  (state: VaccinationCardState) => state.selectedVaccinationCard
 );
-export const getSelectedGeneratedReport = () =>
-  createSelector(
-    getVaccinationCardList,
-    getSelectedVaccinationCard,
-    (
-      vaccinationCardList: Array<VaccinationCard>,
-      selectedVaccinationCardId: string
-    ) => {
-      const selectedVaccinationCard = _.find(
-        vaccinationCardList,
-        (vaccinationCard: VaccinationCard) =>
-          vaccinationCard.tei === selectedVaccinationCardId
-      );
-      return selectedVaccinationCard ?? null;
-    }
-  );
 
 export const getCurrentBufferProgress = createSelector(
   getVaccinationCardDataState,

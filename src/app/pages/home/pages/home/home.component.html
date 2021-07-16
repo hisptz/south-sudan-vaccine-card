@@ -6,6 +6,7 @@
 					<button
 						class="no-outline"
 						mat-stroked-button
+						[disabled]="isLoading$ | async"
 						(click)="openOrganisationUnitFilter()"
 					>
 						Organisation Unit Selection</button
@@ -30,7 +31,11 @@
 					<app-loader></app-loader>
 				</div>
 				<div *ngIf="!(isLoading$ | async)">
-					<mat-card *ngIf="analytics$ | async"> Data to renders </mat-card>
+					<mat-card>
+						<app-report-view
+							(vaccinationCardSelected)="onOpenVaccinationCard($event)"
+						></app-report-view>
+					</mat-card>
 				</div>
 			</div>
 		</div>

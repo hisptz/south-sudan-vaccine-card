@@ -3,14 +3,14 @@ import { BaseState, initialBaseState } from "./base.state";
 
 export interface VaccinationCardState extends BaseState {
   vaccinationCardData: Array<VaccinationCard>;
-  selectedVaccinationCardId: string;
+  selectedVaccinationCard: VaccinationCard;
   bufferProgress: number;
   overAllProgress: number;
 }
 
 export const initialVaccinationCardState: VaccinationCardState = {
   ...initialBaseState,
-  selectedVaccinationCardId: "",
+  selectedVaccinationCard: null,
   bufferProgress: 0,
   overAllProgress: 0,
   vaccinationCardData: [],

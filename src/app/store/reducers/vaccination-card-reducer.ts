@@ -1,4 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
+import * as _ from "lodash";
 
 import {
   LoadVaccinationCardData,
@@ -17,6 +18,7 @@ import {
   loadedBaseState,
   errorBaseState,
 } from "../states/base.state";
+import { VaccinationCard } from "src/app/core/models/vaccination-card";
 
 export const reducer = createReducer(
   initialVaccinationCardState,
@@ -37,7 +39,11 @@ export const reducer = createReducer(
   on(SetSelectedVaccinationCard, (state, { selectedVaccinationCardId }) => ({
     ...state,
     ...loadedBaseState,
-    selectedVaccinationCardId,
+    selectedVaccinationCard: _.find(
+      state.vaccinationCardData,
+      (vaccinationCard: VaccinationCard) =>
+        vaccinationCard.tei === selectedVaccinationCardId
+    ),
   })),
   on(
     UpdateVaccinationCardDataProgress,

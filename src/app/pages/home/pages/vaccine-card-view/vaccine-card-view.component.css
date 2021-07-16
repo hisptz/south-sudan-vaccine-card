@@ -1,0 +1,19 @@
+.app-container {
+	margin: 10px 1vw;
+}
+
+::ng-deep .mat-select-panel {
+	max-width: calc(100% + 100%) !important;
+}
+
+.report-container {
+	margin-top: 10px;
+}
+
+.current-selection {
+	margin: 1vh 0;
+}
+
+.analyticsError {
+	text-align: center;
+}

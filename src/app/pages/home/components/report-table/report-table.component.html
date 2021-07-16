@@ -1,0 +1,38 @@
+<div class="table-responsive">
+	<mat-form-field class="example-full-width">
+		<input type="text" [(ngModel)]="searchText" matInput placeholder="Search" />
+	</mat-form-field>
+	<table class="report-table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th
+					class="p-1"
+					*ngFor="let header of vaccinationCardList | tableHeaders"
+				>
+					{{ header }}
+				</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr
+				*ngFor="
+					let vaccinationCard of vaccinationCardList
+						| tableListSearch: searchText
+						| pagination: tablePagination
+				"
+				(click)="onOpenVaccinationCard(vaccinationCard.tei)"
+			>
+				<td class="p-1" *ngFor="let rowData of vaccinationCard | tableData">
+					{{ rowData }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="pagination" *ngIf="vaccinationCardList">
+	<app-pagination
+		(paginate)="onApplyPagination($event)"
+		[totalItems]="vaccinationCardList.length"
+	></app-pagination>
+</div>
