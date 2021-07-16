@@ -34,10 +34,10 @@ export class VaccinationCardDataEffects {
   );
 
   getVaccinationCardDataFromServer(parameters: any) {
-    const { vaccinationCardConfigs, selectedPeriods, selectedOrgUnits } =
-      parameters;
+    const { vaccinationCardConfigs, selectedOrgUnits } = parameters;
+    // headerConfigs, program, program, programStage
     return new Observable((observer) => {
-      console.log(vaccinationCardConfigs, selectedPeriods, selectedOrgUnits);
+      console.log({ vaccinationCardConfigs, selectedOrgUnits });
       observer.next([]);
       observer.complete();
       //   this.getEventReportAnalyticData(analyticParameters, reportConfig)

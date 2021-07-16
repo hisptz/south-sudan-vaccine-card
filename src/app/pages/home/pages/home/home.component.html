@@ -8,19 +8,12 @@
 						mat-stroked-button
 						(click)="openOrganisationUnitFilter()"
 					>
-						Organisation Unit</button
+						Organisation Unit Selection</button
 					>&nbsp;&nbsp;
 					<button
 						class="no-outline"
 						mat-stroked-button
-						(click)="openPeriodFilter()"
-					>
-						Period</button
-					>&nbsp;&nbsp;
-					<button
-						class="no-outline"
-						mat-stroked-button
-						[disabled]="!shouldGenerateReport"
+						[disabled]="!shouldGenerateReport && !(isLoading$ | async)"
 						(click)="openGenerateReport()"
 					>
 						Generate Report</button
@@ -29,7 +22,6 @@
 			</div>
 			<div>
 				<app-current-selection
-					[selectedPeriods]="selectedPeriods"
 					[selectedOrgUnits]="selectedOrgUnits"
 				></app-current-selection>
 			</div>

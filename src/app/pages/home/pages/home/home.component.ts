@@ -25,7 +25,6 @@ import {
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  selectedPeriods: Array<any>;
   selectedOrgUnits: Array<any>;
   isLoading$: Observable<boolean>;
   shouldGenerateReport: boolean;
@@ -38,7 +37,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading$ = this.store.select(getVaccinationCardDataLoadingStatus);
-    this.selectedPeriods = [];
     this.store
       .select(getCurrentUserOrganisationUnits)
       .subscribe((userOrganisationUnits) => {
@@ -56,8 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateGenerateReportButtonStatus() {
-    this.shouldGenerateReport =
-      this.selectedOrgUnits.length > 0 && this.selectedPeriods.length > 0;
+    this.shouldGenerateReport = this.selectedOrgUnits.length > 0;
   }
 
   openOrganisationUnitFilter() {
@@ -83,30 +80,15 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(ClearVaccinationCardData());
     this.store.dispatch(
       LoadVaccinationCardData({
-        vaccinationCardConfigs,
+        vaccinationCardConfigs: {
+          ...{},
+          headerConfigs: vaccinationCardConfigs.headers,
+          program: vaccinationCardConfigs.programId,
+          programStage: vaccinationCardConfigs.programStageId,
+        },
         selectedOrgUnits: this.selectedOrgUnits,
-        selectedPeriods: this.selectedPeriods,
       })
     );
-  }
-
-  openPeriodFilter() {
-    const width = "800px";
-    const height = "600px";
-    const selectionDialog = this.dialog.open(PeSelectionComponent, {
-      width,
-      height,
-      data: {
-        selectedPeriods: this.selectedPeriods,
-      },
-    });
-    selectionDialog.afterClosed().subscribe((dialogData: any) => {
-      if (dialogData && dialogData.action && dialogData.action === "UPDATE") {
-        this.selectedPeriods =
-          dialogData.selectedPeriods.items || this.selectedPeriods;
-        this.updateGenerateReportButtonStatus();
-      }
-    });
   }
 
   presentSnackBar(message: string, action = "") {

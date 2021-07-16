@@ -15,7 +15,6 @@ export const LoadVaccinationCardData = createAction(
   VaccinationCardActionTypes.LoadVaccinationCardData,
   props<{
     vaccinationCardConfigs: any;
-    selectedPeriods: any;
     selectedOrgUnits: any;
   }>()
 );
