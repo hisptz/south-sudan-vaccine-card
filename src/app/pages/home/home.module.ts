@@ -15,6 +15,8 @@ import { PaginationPipe } from "./pipes/pagination.pipe";
 import { CurrentSelectionComponent } from "./components/current-selection/current-selection.component";
 import { ReportViewComponent } from "./components/report-view/report-view.component";
 import { ReportTableComponent } from "./components/report-table/report-table.component";
+import { TableListSearchPipe } from "./pipes/table-list-search.pipe";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -30,8 +32,9 @@ import { ReportTableComponent } from "./components/report-table/report-table.com
     PaginationComponent,
     PaginationPipe,
     ReportTableComponent,
+    TableListSearchPipe,
   ],
-  imports: [CommonModule, SharedModule, HomeRoutingModule],
+  imports: [CommonModule, SharedModule, HomeRoutingModule, FormsModule],
   entryComponents: [],
 })
 export class HomeModule {}

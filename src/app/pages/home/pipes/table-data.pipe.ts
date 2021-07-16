@@ -10,7 +10,6 @@ import {
 })
 export class TableDataPipe implements PipeTransform {
   transform(vacinationCarddata: Array<VaccinationCard>): Array<string[]> {
-    console.log({ vacinationCarddata });
     return _.map(vacinationCarddata, (vacinationCard: VaccinationCard) =>
       _.map(
         _.filter(

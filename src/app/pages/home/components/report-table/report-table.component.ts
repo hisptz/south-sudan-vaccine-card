@@ -15,6 +15,7 @@ import { TablePagination } from "src/app/shared/models/table-pagination.model";
 })
 export class ReportTableComponent implements OnInit, AfterViewInit {
   tablePagination: TablePagination;
+  public searchText: string;
   @Input() vaccinationCardList: Array<VaccinationCard>;
   constructor(private cd: ChangeDetectorRef) {}
 

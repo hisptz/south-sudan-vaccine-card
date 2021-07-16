@@ -1,4 +1,7 @@
 <div class="table-responsive">
+	<mat-form-field class="example-full-width">
+		<input type="text" [(ngModel)]="searchText" matInput placeholder="Search" />
+	</mat-form-field>
 	<table class="report-table table-bordered">
 		<thead>
 			<tr>
@@ -17,6 +20,7 @@
 					let row of vaccinationCardList
 						| tableData
 						| pagination: tablePagination
+						| tableListSearch: searchText
 				"
 			>
 				<td class="p-1" *ngFor="let rowData of row">{{ rowData }}</td>
