@@ -8,7 +8,7 @@
 						mat-stroked-button
 						(click)="openOrganisationUnitFilter()"
 					>
-						Location</button
+						Organisation Unit</button
 					>&nbsp;&nbsp;
 					<button
 						class="no-outline"
@@ -17,16 +17,28 @@
 					>
 						Period</button
 					>&nbsp;&nbsp;
+					<button
+						class="no-outline"
+						mat-stroked-button
+						[disabled]="!shouldGenerateReport"
+						(click)="openGenerateReport()"
+					>
+						Generate Report</button
+					>&nbsp;&nbsp;
 				</div>
+			</div>
+			<div>
+				<app-current-selection
+					[selectedPeriods]="selectedPeriods"
+					[selectedOrgUnits]="selectedOrgUnits"
+				></app-current-selection>
 			</div>
 			<div class="report-container">
 				<div *ngIf="isLoading$ | async">
 					<app-loader></app-loader>
 				</div>
 				<div *ngIf="!(isLoading$ | async)">
-					<div *ngIf="selectedReport && !selectedReport.disablePeriodSelection">
-						<mat-card *ngIf="analytics$ | async"> Data to renders </mat-card>
-					</div>
+					<mat-card *ngIf="analytics$ | async"> Data to renders </mat-card>
 				</div>
 			</div>
 		</div>

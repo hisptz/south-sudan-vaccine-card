@@ -4,13 +4,14 @@ import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import * as _ from "lodash";
 
+import * as vaccinationCardConfigs from 'src/app/core/configs/vaccination-card-config.json';
+
 import { PeSelectionComponent } from "../../components/pe-selection/pe-selection.component";
 import { OuSelectionComponent } from "../../components/ou-selection/ou-selection.component";
 import { getDefaultOrganisationUnitSelections } from "../../helpers/get-dafault-selections";
 import { State } from "src/app/store/reducers";
 import {
   getCurrentUserOrganisationUnits,
-  isCurrentUserHasCountryLevelOrganisationUnit,
 } from "src/app/store/selectors";
 import { take } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -22,12 +23,9 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 })
 export class HomeComponent implements OnInit {
   selectedPeriods: Array<any>;
-  selectedOrgUnitItems: Array<any>;
+  selectedOrgUnits: Array<any>;
   isLoading$: Observable<boolean>;
-  downloading: boolean;
-  analytics$: Observable<any>;
-  analyticsError$: Observable<any>;
-  hasCountryLevelOrganisationUnit$: Observable<boolean>;
+  shouldGenerateReport :boolean;
 
   constructor(
     private dialog: MatDialog,
@@ -36,27 +34,25 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.hasCountryLevelOrganisationUnit$ = this.store.select(
-      isCurrentUserHasCountryLevelOrganisationUnit
-    );
-    // this.isLoading$ = this.store.select(getCurrentAnalyticsLoadingStatus);
-    // this.analytics$ = this.store.select(getCurrentAnalytics);
-    // this.analyticsError$ = this.store.select(getCurrentAnalyticsError);
-    this.downloading = false;
     this.selectedPeriods = [];
     this.store
       .select(getCurrentUserOrganisationUnits)
       .subscribe((userOrganisationUnits) => {
         if (
-          !this.selectedOrgUnitItems &&
+          !this.selectedOrgUnits &&
           userOrganisationUnits &&
           userOrganisationUnits.length > 0
         ) {
-          this.selectedOrgUnitItems = getDefaultOrganisationUnitSelections(
+          this.selectedOrgUnits = getDefaultOrganisationUnitSelections(
             userOrganisationUnits
           );
+          this.updateGenerateReportButtonStatus();
         }
       });
+  }
+
+  updateGenerateReportButtonStatus(){
+    this.shouldGenerateReport = this.selectedOrgUnits.length > 0 && this.selectedPeriods.length > 0;
   }
 
   openOrganisationUnitFilter() {
@@ -66,15 +62,20 @@ export class HomeComponent implements OnInit {
       width,
       height,
       data: {
-        selectedOrgUnitItems: this.selectedOrgUnitItems,
+        selectedOrgUnitItems: this.selectedOrgUnits,
       },
     });
     selectionDialog.afterClosed().subscribe((dialogData: any) => {
       if (dialogData && dialogData.action) {
-        this.selectedOrgUnitItems =
-          dialogData.selectedOrgUnitItems.items || this.selectedOrgUnitItems;
+        this.selectedOrgUnits =
+          dialogData.selectedOrgUnitItems.items || this.selectedOrgUnits;
+          this.updateGenerateReportButtonStatus();
       }
     });
+  }
+
+  openGenerateReport(){
+    console.log({vaccinationCardConfigs, selectedPeriods : this.selectedPeriods,selectedOrgUnits : this.selectedOrgUnits})
   }
 
   openPeriodFilter() {
@@ -91,6 +92,7 @@ export class HomeComponent implements OnInit {
       if (dialogData && dialogData.action && dialogData.action === "UPDATE") {
         this.selectedPeriods =
           dialogData.selectedPeriods.items || this.selectedPeriods;
+          this.updateGenerateReportButtonStatus();
       }
     });
   }
