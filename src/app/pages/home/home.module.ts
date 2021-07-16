@@ -13,6 +13,8 @@ import { TableDataPipe } from "./pipes/table-data.pipe";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { PaginationPipe } from "./pipes/pagination.pipe";
 import { CurrentSelectionComponent } from "./components/current-selection/current-selection.component";
+import { ReportViewComponent } from "./components/report-view/report-view.component";
+import { ReportTableComponent } from "./components/report-table/report-table.component";
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { CurrentSelectionComponent } from "./components/current-selection/curren
     OuSelectionComponent,
     PeSelectionComponent,
     LoaderComponent,
+    ReportViewComponent,
+    CurrentSelectionComponent,
     SelectionNamePipe,
     TableHeadersPipe,
     TableDataPipe,
     PaginationComponent,
     PaginationPipe,
-    CurrentSelectionComponent,
+    ReportTableComponent,
   ],
   imports: [CommonModule, SharedModule, HomeRoutingModule],
   entryComponents: [],

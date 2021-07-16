@@ -31,7 +31,9 @@
 					<app-loader></app-loader>
 				</div>
 				<div *ngIf="!(isLoading$ | async)">
-					<mat-card *ngIf="analytics$ | async"> Data to renders </mat-card>
+					<mat-card>
+						<app-report-view></app-report-view>
+					</mat-card>
 				</div>
 			</div>
 		</div>
