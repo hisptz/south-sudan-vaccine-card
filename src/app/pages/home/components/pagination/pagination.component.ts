@@ -20,12 +20,13 @@ export class PaginationComponent implements OnInit, AfterViewInit {
   itemsPerPage: string[];
   selectedItemsPerPage: string;
   currentlySelectedPage: number;
-  initialItemsPerPage = "50";
+  initialItemsPerPage: string;
 
   constructor() {}
 
   ngOnInit(): void {
     this.itemsPerPage = ["10", "50", "100", "500", "1000", "5000", "10000"];
+    this.initialItemsPerPage = this.itemsPerPage[0] || "10";
     this.currentlySelectedPage = 1;
     this.selectedItemsPerPage = this.initialItemsPerPage;
     this.onPaginate();

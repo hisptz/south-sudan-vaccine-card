@@ -2,7 +2,7 @@
 	<mat-form-field class="example-full-width">
 		<input type="text" [(ngModel)]="searchText" matInput placeholder="Search" />
 	</mat-form-field>
-	<table class="report-table table-bordered">
+	<table class="report-table table-bordered table-hover">
 		<thead>
 			<tr>
 				<th
@@ -17,13 +17,15 @@
 		<tbody>
 			<tr
 				*ngFor="
-					let row of vaccinationCardList
-						| tableData
+					let vaccinationCard of vaccinationCardList
 						| pagination: tablePagination
 						| tableListSearch: searchText
 				"
+				(click)="onOpenVaccinationCard(vaccinationCard.tei)"
 			>
-				<td class="p-1" *ngFor="let rowData of row">{{ rowData }}</td>
+				<td class="p-1" *ngFor="let rowData of vaccinationCard | tableData">
+					{{ rowData }}
+				</td>
 			</tr>
 		</tbody>
 	</table>

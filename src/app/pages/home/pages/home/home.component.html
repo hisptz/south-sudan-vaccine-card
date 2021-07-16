@@ -32,7 +32,9 @@
 				</div>
 				<div *ngIf="!(isLoading$ | async)">
 					<mat-card>
-						<app-report-view></app-report-view>
+						<app-report-view
+							(vaccinationCardSelected)="onOpenVaccinationCard($event)"
+						></app-report-view>
 					</mat-card>
 				</div>
 			</div>

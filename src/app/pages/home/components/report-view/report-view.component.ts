@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   OnInit,
+  Output,
 } from "@angular/core";
 import { ErrorMessage } from "@iapps/ngx-dhis2-http-client";
 import { Store } from "@ngrx/store";
@@ -25,6 +27,8 @@ export class ReportViewComponent implements OnInit, AfterViewInit {
   vaccinationCardListError$: Observable<ErrorMessage>;
   vaccinationCardListLoading$: Observable<boolean>;
 
+  @Output() vaccinationCardSelected = new EventEmitter();
+
   constructor(private store: Store<State>, private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -35,6 +39,10 @@ export class ReportViewComponent implements OnInit, AfterViewInit {
       getVaccinationCardDataLoadingStatus
     );
     this.vaccinationCardList$ = this.store.select(getVaccinationCardList);
+  }
+
+  onOpenVaccinationCard(selectedVaccinationCardId: string) {
+    this.vaccinationCardSelected.emit(selectedVaccinationCardId);
   }
 
   ngAfterViewInit() {

@@ -10,10 +10,25 @@ import {
 })
 export class TableListSearchPipe implements PipeTransform {
   transform(
-    vacinationCarddata: Array<any>,
+    vacinationCardData: Array<VaccinationCard>,
     filterKey: String
   ): Array<string[]> {
-    console.log({ filterKey, vacinationCarddata });
-    return filterKey && filterKey != "" ? [] : vacinationCarddata;
+    return filterKey && filterKey != ""
+      ? _.flattenDeep(
+          _.map(vacinationCardData, (vacinationCard: VaccinationCard) => {
+            const rowData = _.map(
+              _.filter(
+                vacinationCard.headers || [],
+                (headerConfig: VaccinationCardHeader) =>
+                  headerConfig.isVisibleOnList
+              ),
+              (headerConfig: VaccinationCardHeader) => headerConfig.value
+            );
+            console.log({ rowData });
+
+            return vacinationCard;
+          })
+        )
+      : vacinationCardData;
   }
 }

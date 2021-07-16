@@ -1,22 +1,21 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import * as _ from "lodash";
 
 import * as vaccinationCardConfigs from "src/app/core/configs/vaccination-card-config.json";
-
-import { PeSelectionComponent } from "../../components/pe-selection/pe-selection.component";
 import { OuSelectionComponent } from "../../components/ou-selection/ou-selection.component";
 import { getDefaultOrganisationUnitSelections } from "../../helpers/get-dafault-selections";
 import { State } from "src/app/store/reducers";
 import { getCurrentUserOrganisationUnits } from "src/app/store/selectors";
-import { take } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { getVaccinationCardDataLoadingStatus } from "src/app/store/selectors/vaccination-card-selector";
 import {
   ClearVaccinationCardData,
   LoadVaccinationCardData,
+  SetSelectedVaccinationCard,
 } from "src/app/store/actions";
 
 @Component({
@@ -32,6 +31,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private store: Store<State>,
+    private router: Router,
     private snackbar: MatSnackBar
   ) {}
 
@@ -89,6 +89,13 @@ export class HomeComponent implements OnInit {
         selectedOrgUnits: this.selectedOrgUnits,
       })
     );
+  }
+
+  onOpenVaccinationCard(selectedVaccinationCardId: string) {
+    this.store.dispatch(
+      SetSelectedVaccinationCard({ selectedVaccinationCardId })
+    );
+    this.router.navigate(["vaccine-card-view"]);
   }
 
   presentSnackBar(message: string, action = "") {

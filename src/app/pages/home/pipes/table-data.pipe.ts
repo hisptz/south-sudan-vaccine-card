@@ -9,15 +9,13 @@ import {
   name: "tableData",
 })
 export class TableDataPipe implements PipeTransform {
-  transform(vacinationCarddata: Array<VaccinationCard>): Array<string[]> {
-    return _.map(vacinationCarddata, (vacinationCard: VaccinationCard) =>
-      _.map(
-        _.filter(
-          vacinationCard.headers || [],
-          (headerConfig: VaccinationCardHeader) => headerConfig.isVisibleOnList
-        ),
-        (headerConfig: VaccinationCardHeader) => headerConfig.value
-      )
+  transform(vacinationCard: VaccinationCard): Array<string[]> {
+    return _.map(
+      _.filter(
+        vacinationCard.headers || [],
+        (headerConfig: VaccinationCardHeader) => headerConfig.isVisibleOnList
+      ),
+      (headerConfig: VaccinationCardHeader) => headerConfig.value
     );
   }
 }

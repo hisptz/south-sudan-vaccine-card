@@ -11,6 +11,7 @@
 		"
 	>
 		<app-report-table
+			(vaccinationCardSelected)="onOpenVaccinationCard($event)"
 			[vaccinationCardList]="vaccinationCardList$ | async"
 		></app-report-table>
 	</div>

@@ -4,6 +4,8 @@ import {
   Component,
   Input,
   OnInit,
+  Output,
+  EventEmitter,
 } from "@angular/core";
 import { VaccinationCard } from "src/app/core/models/vaccination-card";
 import { TablePagination } from "src/app/shared/models/table-pagination.model";
@@ -17,6 +19,8 @@ export class ReportTableComponent implements OnInit, AfterViewInit {
   tablePagination: TablePagination;
   public searchText: string;
   @Input() vaccinationCardList: Array<VaccinationCard>;
+  @Output() vaccinationCardSelected = new EventEmitter();
+
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -25,6 +29,10 @@ export class ReportTableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.cd.detectChanges();
+  }
+
+  onOpenVaccinationCard(selectedVaccinationCardId: string) {
+    this.vaccinationCardSelected.emit(selectedVaccinationCardId);
   }
 
   onApplyPagination(pagination: TablePagination) {
