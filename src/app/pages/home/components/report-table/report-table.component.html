@@ -18,8 +18,8 @@
 			<tr
 				*ngFor="
 					let vaccinationCard of vaccinationCardList
-						| pagination: tablePagination
 						| tableListSearch: searchText
+						| pagination: tablePagination
 				"
 				(click)="onOpenVaccinationCard(vaccinationCard.tei)"
 			>

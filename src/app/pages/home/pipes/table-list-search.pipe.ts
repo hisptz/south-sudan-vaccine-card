@@ -11,24 +11,24 @@ import {
 export class TableListSearchPipe implements PipeTransform {
   transform(
     vacinationCardData: Array<VaccinationCard>,
-    filterKey: String
+    searchText: String
   ): Array<string[]> {
-    return filterKey && filterKey != ""
-      ? _.flattenDeep(
-          _.map(vacinationCardData, (vacinationCard: VaccinationCard) => {
-            const rowData = _.map(
-              _.filter(
-                vacinationCard.headers || [],
-                (headerConfig: VaccinationCardHeader) =>
-                  headerConfig.isVisibleOnList
-              ),
-              (headerConfig: VaccinationCardHeader) => headerConfig.value
-            );
-            console.log({ rowData });
-
-            return vacinationCard;
-          })
-        )
+    return searchText && searchText != ""
+      ? _.filter(vacinationCardData, (vacinationCard: VaccinationCard) => {
+        const rowData = _.map(
+          vacinationCard.headers || [],
+          (headerConfig: VaccinationCardHeader) => `${headerConfig.value}`.toLowerCase()
+        );
+        const searchKeys = _.filter(_.map(searchText.toLowerCase().split(" "), key=> key.trim()), key=>key!=="");
+        for(const key of searchKeys){
+          for(const value of rowData){
+            if(_.startsWith(value,key)){
+              return true;
+            }
+          }
+        }
+        return false
+      })
       : vacinationCardData;
   }
 }
