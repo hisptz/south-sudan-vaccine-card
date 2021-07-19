@@ -17,6 +17,9 @@ import { take } from "rxjs/operators";
 export class VaccineCardViewComponent implements OnInit {
   selectedVaccinationCard$: Observable<VaccinationCard>;
 
+  // @TODO softcopy number  suppored vaccine does
+  vaccineDosesIndex = [0, 1, 2];
+
   constructor(private router: Router, private store: Store<State>) {}
 
   ngOnInit(): void {
@@ -25,7 +28,11 @@ export class VaccineCardViewComponent implements OnInit {
     );
   }
 
-  goBackHome() {
+  onPrintVaccinaCard() {
+    window.print();
+  }
+
+  onGoBackHome() {
     this.router.navigate([""]);
   }
 }

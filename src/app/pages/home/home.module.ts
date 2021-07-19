@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 import { HomeRoutingModule } from "./home-routing.module";
 import { SharedModule } from "src/app/shared/shared.module";
@@ -15,8 +16,10 @@ import { PaginationPipe } from "./pipes/pagination.pipe";
 import { CurrentSelectionComponent } from "./components/current-selection/current-selection.component";
 import { ReportViewComponent } from "./components/report-view/report-view.component";
 import { ReportTableComponent } from "./components/report-table/report-table.component";
+
+import { VaccineCardBioComponent } from "./components/vaccine-card-bio/vaccine-card-bio.component";
+import { VaccineCardDoseComponent } from "./components/vaccine-card-dose/vaccine-card-dose.component";
 import { TableListSearchPipe } from "./pipes/table-list-search.pipe";
-import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import { FormsModule } from "@angular/forms";
     PaginationPipe,
     ReportTableComponent,
     TableListSearchPipe,
+    VaccineCardBioComponent,
+    VaccineCardDoseComponent,
   ],
   imports: [CommonModule, SharedModule, HomeRoutingModule, FormsModule],
   entryComponents: [],

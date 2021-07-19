@@ -1,0 +1,17 @@
+.vaccine-card-bio {
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ececec;
+}
+
+.vaccine-card-bio-container {
+	margin-bottom: 5px;
+}
+
+.vaccine-card-bio-label {
+	font-weight: 100;
+}
+
+.vaccine-card-bio-value {
+	font-weight: bold;
+}

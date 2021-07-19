@@ -1,16 +1,42 @@
 <div class="app-container">
-	<div class="row">
+	<div class="row action-buttons">
 		<div class="col">
 			<div class="d-flex justify-content-between">
 				<div>
-					<button class="no-outline" mat-stroked-button (click)="goBackHome()">
+					<button
+						class="no-outline"
+						mat-stroked-button
+						(click)="onGoBackHome()"
+					>
 						Go Home</button
+					>&nbsp;&nbsp;
+					<button
+						class="no-outline"
+						[disabled]="!(selectedVaccinationCard$ | async)"
+						mat-stroked-button
+						(click)="onPrintVaccinaCard()"
+					>
+						Print</button
 					>&nbsp;&nbsp;
 				</div>
 			</div>
 		</div>
 	</div>
-	<div>
-		{{ selectedVaccinationCard$ | async | json }}
+	<div class="vaccine-card" *ngIf="selectedVaccinationCard$ | async">
+		<div class="row">
+			<div class="col-6">
+				<app-vaccine-card-bio
+					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
+				></app-vaccine-card-bio>
+			</div>
+			<div class="col-6">
+				<div *ngFor="let doseIndex of vaccineDosesIndex">
+					<app-vaccine-card-dose
+						[doseIndex]="doseIndex"
+						[selectedVaccinationCard]="selectedVaccinationCard$ | async"
+					></app-vaccine-card-dose>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
