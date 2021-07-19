@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 import { VaccinationCardHeader } from "../models/vaccination-card";
+import { getFormattedDate } from "../utils/date-formatter.util";
 
 export function getProgressPercentage(numerator: number, denominator: number) {
   const percentageValue = ((numerator / denominator) * 100).toFixed(0);
@@ -52,7 +53,14 @@ export function getSanitizedVaccinationCardData(
                 organisationUnits,
                 orgUnit
               );
-              return { ...headerConfig, value };
+              return {
+                ...headerConfig,
+                displayName:
+                  headerConfig.displayName !== ""
+                    ? headerConfig.displayName
+                    : headerConfig.name,
+                value,
+              };
             }
           );
           return { headers, tei: trackedEntityInstance };
@@ -95,6 +103,15 @@ function getVaccinationCardListHeaderValue(
   ) {
     for (const vaccineDose of vaccineDoses) {
       value = getValueFromEventDataValue(vaccineDose, headerConfig, value);
+    }
+  }
+  if (value !== "") {
+    if (headerConfig.isBoolean) {
+      value = `${value}` === "true" ? "Yes" : "No";
+    } else if (headerConfig.isDate) {
+      value = getFormattedDate(value);
+    } else {
+      // @TODO appliying option set values
     }
   }
   return value;

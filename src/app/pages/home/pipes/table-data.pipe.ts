@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import * as _ from "lodash";
 import {
-  VaccinationCardHeader,
   VaccinationCard,
+  VaccinationCardHeader,
 } from "src/app/core/models/vaccination-card";
 
 @Pipe({

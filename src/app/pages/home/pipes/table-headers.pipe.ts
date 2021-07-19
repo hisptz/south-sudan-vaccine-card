@@ -16,7 +16,7 @@ export class TableHeadersPipe implements PipeTransform {
         dataRow.headers || [],
         (headerConfig: VaccinationCardHeader) => headerConfig.isVisibleOnList
       ),
-      (headerConfig: VaccinationCardHeader) => headerConfig.label
+      (headerConfig: VaccinationCardHeader) => headerConfig.name
     );
   }
 }

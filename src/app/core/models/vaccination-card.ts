@@ -5,11 +5,13 @@ export interface VaccinationCard {
 
 export interface VaccinationCardHeader {
   id: string;
-  label: string;
+  name: string;
+  displayName: String;
   isDataElement: boolean;
   isBoolean: boolean;
   isDate: boolean;
   isVisibleOnList: boolean;
+  isBioInfoCard: boolean;
   organisationUnitLevel?: number;
   doseIndex?: number;
   value?: string;
