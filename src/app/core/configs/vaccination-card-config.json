@@ -37,7 +37,7 @@
     },
     {
       "id": "KSr2yTdu1AI",
-      "displayName": "Identification number (State=Country-Facility-Serial number/Year)",
+      "displayName": "Identification number (State-Country-Facility-Serial number/Year)",
       "name": "Unique System Identifier (EPI)",
       "isDataElement": false,
       "isBoolean": false,
@@ -151,7 +151,7 @@
       "name": "Date of 1st dose",
       "isDataElement": true,
       "isBoolean": false,
-      "isDate": false,
+      "isDate": true,
       "isBioInfoCard": false,
       "isVisibleOnList": false,
       "doseIndex": 0
@@ -217,7 +217,7 @@
       "name": "Date of 2nd dose",
       "isDataElement": true,
       "isBoolean": false,
-      "isDate": false,
+      "isDate": true,
       "isBioInfoCard": false,
       "isVisibleOnList": false,
       "doseIndex": 1
@@ -283,7 +283,7 @@
       "name": "Date of 3rd dose",
       "isDataElement": true,
       "isBoolean": false,
-      "isDate": false,
+      "isDate": true,
       "isBioInfoCard": false,
       "isVisibleOnList": false,
       "doseIndex": 2

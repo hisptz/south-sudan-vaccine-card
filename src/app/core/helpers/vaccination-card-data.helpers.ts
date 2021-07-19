@@ -7,6 +7,7 @@ export function getProgressPercentage(numerator: number, denominator: number) {
   return parseInt(percentageValue, 10);
 }
 
+//@TODO rogram metadata
 export function getSanitizedVaccinationCardData(
   teiResponse: any,
   organisationUnits: Array<any>,
