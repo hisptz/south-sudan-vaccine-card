@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-vaccine-card-header',
-  templateUrl: './vaccine-card-header.component.html',
-  styleUrls: ['./vaccine-card-header.component.css']
+  selector: "app-vaccine-card-header",
+  templateUrl: "./vaccine-card-header.component.html",
+  styleUrls: ["./vaccine-card-header.component.css"],
 })
 export class VaccineCardHeaderComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { VaccineCardHeaderComponent } from './vaccine-card-header.component';
+import { VaccineCardHeaderComponent } from "./vaccine-card-header.component";
 
-describe('VaccineCardHeaderComponent', () => {
+describe("VaccineCardHeaderComponent", () => {
   let component: VaccineCardHeaderComponent;
   let fixture: ComponentFixture<VaccineCardHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VaccineCardHeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [VaccineCardHeaderComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('VaccineCardHeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

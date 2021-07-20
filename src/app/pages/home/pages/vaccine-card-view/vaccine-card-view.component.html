@@ -35,7 +35,7 @@
 				</div>
 			</div>
 			<div class="col-6">
-				<div *ngFor="let doseIndex of vaccineDosesIndex">
+				<div *ngFor="let doseIndex of vaccineDosesIndex$ | async">
 					<app-vaccine-card-dose
 						[doseIndex]="doseIndex"
 						[selectedVaccinationCard]="selectedVaccinationCard$ | async"

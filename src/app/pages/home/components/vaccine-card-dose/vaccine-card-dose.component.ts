@@ -16,10 +16,9 @@ export class VaccineCardDoseComponent implements OnInit {
 
   //@TODO sofycode columns for next dose date
   nextDoseDateId: string = "FFWcps4MfuH";
-  nextDoseLabel : string = "";
-  nextDoseDate : string = "";
-  
-  
+  nextDoseLabel: string = "";
+  nextDoseDate: string = "";
+
   vaccinaDoseCard: Array<any>;
 
   constructor() {}
@@ -32,15 +31,24 @@ export class VaccineCardDoseComponent implements OnInit {
           headerConfig.hasOwnProperty("doseIndex") &&
           headerConfig.doseIndex === this.doseIndex
       );
-      if(selectedDoseData && selectedDoseData.length > 0){
-        const nextDoseData = _.find(selectedDoseData, (data:VaccinationCardHeader)=> data.id ===  this.nextDoseDateId)
-        if(nextDoseData){
-          this.nextDoseLabel  = nextDoseData.displayName;
+      if (selectedDoseData && selectedDoseData.length > 0) {
+        const nextDoseData = _.find(
+          selectedDoseData,
+          (data: VaccinationCardHeader) => data.id === this.nextDoseDateId
+        );
+        if (nextDoseData) {
+          this.nextDoseLabel = nextDoseData.displayName;
           this.nextDoseDate = nextDoseData.value;
         }
-        this.vaccinaDoseCard = _.map(_.filter(selectedDoseData, (data:VaccinationCardHeader)=> data.id !==  this.nextDoseDateId),(data:VaccinationCardHeader)=>{
-          return [data.displayName, data.value]
-        } );
+        this.vaccinaDoseCard = _.map(
+          _.filter(
+            selectedDoseData,
+            (data: VaccinationCardHeader) => data.id !== this.nextDoseDateId
+          ),
+          (data: VaccinationCardHeader) => {
+            return [data.displayName, data.value];
+          }
+        );
       }
     }
   }

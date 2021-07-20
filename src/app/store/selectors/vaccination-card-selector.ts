@@ -1,5 +1,8 @@
 import { createSelector } from "@ngrx/store";
-import { VaccinationCard } from "src/app/core/models/vaccination-card";
+import {
+  VaccinationCard,
+  VaccinationCardHeader,
+} from "src/app/core/models/vaccination-card";
 import { getRootState, State } from "../reducers";
 import { VaccinationCardState } from "../states/vaccination-card-state";
 import * as _ from "lodash";
@@ -12,6 +15,26 @@ export const getVaccinationCardDataState = createSelector(
 export const getVaccinationCardList = createSelector(
   getVaccinationCardDataState,
   (state: VaccinationCardState) => state.vaccinationCardData
+);
+
+export const getSelectedVaccinationCardDosesIndex = createSelector(
+  getVaccinationCardDataState,
+  (state: VaccinationCardState) => {
+    const selectedVaccinationCard: VaccinationCard =
+      state.selectedVaccinationCard;
+    return _.uniq(
+      _.flattenDeep(
+        _.map(
+          _.filter(
+            selectedVaccinationCard.headers || [],
+            (headerConfig: VaccinationCardHeader) =>
+              headerConfig.hasOwnProperty("doseIndex")
+          ),
+          (headerConfig: VaccinationCardHeader) => headerConfig.doseIndex
+        )
+      )
+    );
+  }
 );
 
 export const getSelectedVaccinationCard = createSelector(
