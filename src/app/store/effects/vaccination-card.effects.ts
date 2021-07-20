@@ -13,7 +13,6 @@ import {
 } from "../actions";
 import { Store } from "@ngrx/store";
 import { State } from "../reducers";
-import { getFormattedDate } from "src/app/core/utils/date-formatter.util";
 import { VaccinationCard } from "src/app/core/models/vaccination-card";
 import {
   getProgressPercentage,

@@ -1,0 +1,55 @@
+.vaccine-card-header-container {
+	padding: 10px;
+	text-align: center;
+	font-weight: bolder;
+}
+
+.icon {
+	width: 10rem;
+}
+
+.vaccine-card-herader-sub-container {
+	margin-top: 20px;
+}
+
+.vaccine-card-herader-note {
+	margin-top: 30px;
+	padding: 10px;
+	font-weight: lighter;
+}
+
+h2 {
+	font-size: 2.3rem;
+}
+
+h2 {
+	font-size: 2.1rem;
+}
+
+@media print {
+	.icon {
+		width: 7rem !important;
+	}
+
+	.vaccine-card-herader-sub-container {
+		margin-top: 10px !important;
+	}
+
+	.vaccine-card-herader-note {
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
+	}
+
+	.vaccine-card-herader-note {
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
+	}
+
+	h2 {
+		font-size: 1.5rem !important;
+	}
+
+	h2 {
+		font-size: 1.3rem !important;
+	}
+}

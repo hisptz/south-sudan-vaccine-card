@@ -6,13 +6,19 @@
 	margin-top: 10px;
 }
 
-::ng-deep .mat-select-panel {
-	max-width: calc(100% + 100%) !important;
-}
-
 @media print {
 	.login-form-container,
-	.action-buttons {
+	.action-buttons,
+	.dhis2-menu,
+	.menu-container {
 		visibility: hidden !important;
+		display: none !important;
+	}
+	.dhis2-menu {
+		margin-bottom: 0px;
+	}
+
+	.application-content {
+		margin-top: 0px;
 	}
 }

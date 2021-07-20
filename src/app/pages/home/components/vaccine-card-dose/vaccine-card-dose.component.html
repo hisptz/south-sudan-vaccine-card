@@ -1,15 +1,25 @@
 <div class="vaccine-card-dose-container">
-	<table class="table-bordered table-responsive">
+	<table class="table-bordered">
 		<thead>
 			<tr>
 				<th>Items</th>
 				<th>Responses</th>
-				<th>Signature/Stamp:</th>
-				<th>Datae of second dose</th>
+				<th>Signature / Stamp:</th>
+				<th>{{ nextDoseLabel }}</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr></tr>
+			<tr>
+				<td colspan="2" class="inner-data-table">
+					<tr *ngFor="let vaccinaDose of vaccinaDoseCard">
+						<td *ngFor="let vaccineData of vaccinaDose">
+							{{ vaccineData }}
+						</td>
+					</tr>
+				</td>
+				<td></td>
+				<td>{{ nextDoseDate }}</td>
+			</tr>
 		</tbody>
 	</table>
 </div>

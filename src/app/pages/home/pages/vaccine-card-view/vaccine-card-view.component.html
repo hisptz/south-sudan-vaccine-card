@@ -23,11 +23,16 @@
 		</div>
 	</div>
 	<div class="vaccine-card" *ngIf="selectedVaccinationCard$ | async">
+		<div>
+			<app-vaccine-card-header></app-vaccine-card-header>
+		</div>
 		<div class="row">
 			<div class="col-6">
-				<app-vaccine-card-bio
-					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
-				></app-vaccine-card-bio>
+				<div>
+					<app-vaccine-card-bio
+						[selectedVaccinationCard]="selectedVaccinationCard$ | async"
+					></app-vaccine-card-bio>
+				</div>
 			</div>
 			<div class="col-6">
 				<div *ngFor="let doseIndex of vaccineDosesIndex">

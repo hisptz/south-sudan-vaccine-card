@@ -1,7 +1,7 @@
 .vaccine-card-bio {
 	padding: 10px;
 	border-radius: 5px;
-	border: 1px solid #ececec;
+	border: 1px solid #dee2e6;
 }
 
 .vaccine-card-bio-container {
@@ -14,4 +14,40 @@
 
 .vaccine-card-bio-value {
 	font-weight: bold;
+}
+
+@media print {
+	th,
+	td {
+		font-size: 1.1rem !important;
+		padding: 3px !important;
+	}
+}
+
+tbody {
+	display: block;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+thead,
+tbody tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+th,
+td {
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	word-wrap: break-word;
+}
+
+th {
+	text-align: center;
+}
+
+table {
+	width: 100%;
 }

@@ -20,6 +20,7 @@ import { ReportTableComponent } from "./components/report-table/report-table.com
 import { VaccineCardBioComponent } from "./components/vaccine-card-bio/vaccine-card-bio.component";
 import { VaccineCardDoseComponent } from "./components/vaccine-card-dose/vaccine-card-dose.component";
 import { TableListSearchPipe } from "./pipes/table-list-search.pipe";
+import { VaccineCardHeaderComponent } from './components/vaccine-card-header/vaccine-card-header.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TableListSearchPipe } from "./pipes/table-list-search.pipe";
     TableListSearchPipe,
     VaccineCardBioComponent,
     VaccineCardDoseComponent,
+    VaccineCardHeaderComponent,
   ],
   imports: [CommonModule, SharedModule, HomeRoutingModule, FormsModule],
   entryComponents: [],
