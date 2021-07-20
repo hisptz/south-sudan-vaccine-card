@@ -123,7 +123,14 @@ function getVaccinationCardListHeaderValue(
           programField.id === headerConfig.id
       );
       if (filteredProgramField) {
-        console.log({ filteredProgramField, value, name: headerConfig.name });
+        const filterOption = _.find(
+          filteredProgramField.optionSet.options || [],
+          (option: any) => option && option.code && option.code === value
+        );
+        value =
+          filterOption && filterOption.displayName
+            ? filterOption.displayName
+            : value;
       }
     }
   }
