@@ -11,6 +11,7 @@ export function getProgressPercentage(numerator: number, denominator: number) {
 export function getSanitizedVaccinationCardData(
   teiResponse: any,
   organisationUnits: Array<any>,
+  programMetadata: any,
   headerConfigs: Array<VaccinationCardHeader>,
   program: string,
   programStage: string
@@ -31,7 +32,7 @@ export function getSanitizedVaccinationCardData(
           _.sortBy(
             _.filter(
               enrollment.events || [],
-              (eventObject) =>
+              (eventObject: any) =>
                 eventObject &&
                 eventObject.eventDate &&
                 eventObject.dataValues &&
@@ -46,12 +47,12 @@ export function getSanitizedVaccinationCardData(
           const headers: Array<VaccinationCardHeader> = _.map(
             headerConfigs,
             (headerConfig: VaccinationCardHeader) => {
-              //@TODO get data element && attributes option set and value types from program
               let value = getVaccinationCardListHeaderValue(
                 headerConfig,
                 attributes,
                 vaccineDoses,
                 organisationUnits,
+                programMetadata,
                 orgUnit
               );
               return {
@@ -79,6 +80,7 @@ function getVaccinationCardListHeaderValue(
   attributes: any,
   vaccineDoses: any,
   organisationUnits: any,
+  programMetadata: any,
   orgUnit: string
 ) {
   let value = "";
@@ -112,7 +114,17 @@ function getVaccinationCardListHeaderValue(
     } else if (headerConfig.isDate) {
       value = getFormattedDate(value);
     } else {
-      // @TODO appliying option set values
+      const filteredProgramField = _.find(
+        programMetadata.fields || [],
+        (programField) =>
+          programField &&
+          programField.id &&
+          programField.optionSet &&
+          programField.id === headerConfig.id
+      );
+      if (filteredProgramField) {
+        console.log({ filteredProgramField, value, name: headerConfig.name });
+      }
     }
   }
   return value;

@@ -61,6 +61,10 @@ export class VaccinationCardDataEffects {
       let bufferProcessCount = 0;
       const { headerConfigs, program, programStage } = vaccinationCardConfigs;
       const organisationUnits: any = await this.getAllOrganisationUnits();
+      const programMetadata: any = await this.getProgramMetadata(
+        program,
+        programStage
+      );
       for (const selectedOrgUnit of selectedOrgUnits) {
         if (selectedOrgUnit && selectedOrgUnit.id) {
           const url = `trackedEntityInstances.json?ou=${selectedOrgUnit.id}&ouMode=DESCENDANTS&program=${program}`;
@@ -102,6 +106,7 @@ export class VaccinationCardDataEffects {
             getSanitizedVaccinationCardData(
               response,
               organisationUnits,
+              programMetadata,
               headerConfigs,
               program,
               programStage
@@ -123,6 +128,52 @@ export class VaccinationCardDataEffects {
         .subscribe(
           (data) => resolve(data["trackedEntityInstances"] || []),
           (error) => reject(error)
+        );
+    });
+  }
+
+  getProgramMetadata(program: string, programStage: string) {
+    const url = `programs/${program}.json?fields=id,name,programTrackedEntityAttributes[trackedEntityAttribute[id,optionSet[options[code,displayName]]]],programStages[id,programStageDataElements[dataElement[id,optionSet[options[code,displayName]]]]]`;
+    return new Promise((resolve, reject) => {
+      this.httpClient
+        .get(url)
+        .pipe(take(1))
+        .subscribe(
+          (data) => {
+            const { id, programTrackedEntityAttributes, programStages } = data;
+            const trackedEntityAttributes = _.flattenDeep(
+              _.map(
+                programTrackedEntityAttributes || [],
+                (programTrackedEntityAttribute: any) =>
+                  programTrackedEntityAttribute.trackedEntityAttribute || []
+              )
+            );
+            const dataElements = _.flattenDeep(
+              _.map(
+                _.filter(
+                  programStages,
+                  (programStageObject: any) =>
+                    programStageObject &&
+                    programStageObject.id &&
+                    programStageObject.id === programStage
+                ),
+                (programStageObject: any) =>
+                  _.map(
+                    programStageObject.programStageDataElements || [],
+                    (programStageDataElement: any) =>
+                      programStageDataElement.dataElement
+                  )
+              )
+            );
+            resolve({
+              id,
+              fields: _.uniqBy(
+                [...trackedEntityAttributes, ...dataElements],
+                "id"
+              ),
+            });
+          },
+          () => reject({ id: program, fields: [] })
         );
     });
   }
