@@ -17,6 +17,11 @@ export const getVaccinationCardList = createSelector(
   (state: VaccinationCardState) => state.vaccinationCardData
 );
 
+export const getTotalVaccinationCardData = createSelector(
+  getVaccinationCardDataState,
+  (state: VaccinationCardState) => state.vaccinationCardData.length || 0
+);
+
 export const getSelectedVaccinationCardDosesIndex = createSelector(
   getVaccinationCardDataState,
   (state: VaccinationCardState) => {
@@ -26,7 +31,7 @@ export const getSelectedVaccinationCardDosesIndex = createSelector(
       _.flattenDeep(
         _.map(
           _.filter(
-            selectedVaccinationCard.headers || [],
+            selectedVaccinationCard?.headers || [],
             (headerConfig: VaccinationCardHeader) =>
               headerConfig.hasOwnProperty("doseIndex")
           ),

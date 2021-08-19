@@ -21,6 +21,7 @@ import { VaccineCardBioComponent } from "./components/vaccine-card-bio/vaccine-c
 import { VaccineCardDoseComponent } from "./components/vaccine-card-dose/vaccine-card-dose.component";
 import { TableListSearchPipe } from "./pipes/table-list-search.pipe";
 import { VaccineCardHeaderComponent } from "./components/vaccine-card-header/vaccine-card-header.component";
+import { QRCodeModule } from "angular2-qrcode";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,13 @@ import { VaccineCardHeaderComponent } from "./components/vaccine-card-header/vac
     VaccineCardDoseComponent,
     VaccineCardHeaderComponent,
   ],
-  imports: [CommonModule, SharedModule, HomeRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    HomeRoutingModule,
+    FormsModule,
+    QRCodeModule,
+  ],
   entryComponents: [],
 })
 export class HomeModule {}
