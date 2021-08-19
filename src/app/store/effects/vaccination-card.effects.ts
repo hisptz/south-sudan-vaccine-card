@@ -7,9 +7,11 @@ import * as _ from "lodash";
 
 import {
   AddVaccinationCardData,
+  AddVaccinationCardDataById,
   LoadVaccinationCardData,
   LoadVaccinationCardDataById,
   LoadVaccinationCardDataFail,
+  SetSelectedVaccinationCard,
   UpdateVaccinationCardDataProgress,
 } from "../actions";
 import { Store } from "@ngrx/store";
@@ -27,9 +29,16 @@ export class VaccinationCardDataEffects {
       ofType(LoadVaccinationCardDataById),
       switchMap((actions) =>
         this.getVaccinationCardDataByIdFromServer(actions).pipe(
-          map((vaccinationCardData: Array<VaccinationCard>) =>
-            AddVaccinationCardData({ vaccinationCardData })
-          ),
+          map((vaccinationCardData: Array<VaccinationCard>) => {
+            const seletectedTeiId = actions.seletectedTeiId || "";
+            return AddVaccinationCardDataById({
+              vaccinationCardData: _.find(
+                vaccinationCardData,
+                (data) => data.tei === seletectedTeiId
+              ),
+              selectedVaccinationCardId: seletectedTeiId,
+            });
+          }),
           catchError((error: any) => of(LoadVaccinationCardDataFail({ error })))
         )
       )
@@ -73,12 +82,42 @@ export class VaccinationCardDataEffects {
     const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,programStage,dataValues[dataElement,value]]]`;
     try {
       const { headerConfigs, program, programStage } = vaccinationCardConfigs;
-      // const organisationUnits: any = await this.getAllOrganisationUnits();
       const programMetadata: any = await this.getProgramMetadata(
         program,
         programStage
       );
-      console.log({ programMetadata, seletectedTeiId, fields });
+      const url = `trackedEntityInstances/${seletectedTeiId}.json?program=${program}&${fields}`;
+      const trackedEntityInstanceReponse = await this.httpClient
+        .get(`${url}`)
+        .pipe(take(1))
+        .toPromise();
+      const organisationUnitIds = _.uniq(
+        _.flattenDeep(
+          _.map(
+            _.filter(
+              trackedEntityInstanceReponse?.enrollments || [],
+              (enrollment: any) =>
+                enrollment &&
+                enrollment.program &&
+                enrollment.program == program
+            ),
+            (enrollment: any) => enrollment.orgUnit || []
+          )
+        )
+      );
+      const organisationUnits: any = await this.getAllOrganisationUnits(
+        organisationUnitIds
+      );
+      vaccinationCardData.push(
+        getSanitizedVaccinationCardData(
+          [trackedEntityInstanceReponse],
+          organisationUnits,
+          programMetadata,
+          headerConfigs,
+          program,
+          programStage
+        )
+      );
     } catch (error) {
       console.log({ error: error.message || error });
     }
@@ -228,12 +267,16 @@ export class VaccinationCardDataEffects {
     });
   }
 
-  getAllOrganisationUnits() {
+  getAllOrganisationUnits(organisationUnitIds = []) {
     const url =
       "organisationUnits.json?fields=id,name,level,ancestors[name,level]&paging=false";
+    const filter =
+      organisationUnitIds.length > 0
+        ? `filter=id:in:[${_.join(organisationUnitIds, ",")}]`
+        : ``;
     return new Promise((resolve, reject) => {
       this.httpClient
-        .get(url)
+        .get(`${url}&${filter}`)
         .pipe(take(1))
         .subscribe(
           (data) => {
