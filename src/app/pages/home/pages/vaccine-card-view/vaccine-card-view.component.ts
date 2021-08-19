@@ -4,14 +4,19 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 
 import * as _ from "lodash";
+
+import * as vaccinationCardConfigs from "src/app/core/configs/vaccination-card-config.json";
 import { State } from "src/app/store/reducers";
 import {
   getSelectedVaccinationCard,
-  getSelectedVaccinationCardDosesIndex,
   getTotalVaccinationCardData,
 } from "src/app/store/selectors";
 import { VaccinationCard } from "src/app/core/models/vaccination-card";
 import { take } from "rxjs/operators";
+import {
+  ClearVaccinationCardData,
+  LoadVaccinationCardDataById,
+} from "src/app/store/actions";
 
 @Component({
   selector: "app-vaccine-card-view",
@@ -20,20 +25,20 @@ import { take } from "rxjs/operators";
 })
 export class VaccineCardViewComponent implements OnInit {
   selectedVaccinationCard$: Observable<VaccinationCard>;
-  vaccineDosesIndex$: Observable<VaccinationCard>;
+
+  isVaccinationListLoaded: boolean;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private store: Store<State>
-  ) {}
+  ) {
+    this.isVaccinationListLoaded = false;
+  }
 
   ngOnInit(): void {
     this.selectedVaccinationCard$ = this.store.select(
       getSelectedVaccinationCard
-    );
-    this.vaccineDosesIndex$ = this.store.select(
-      getSelectedVaccinationCardDosesIndex
     );
     this.getCurrentTeiIdFromActiveRoute();
   }
@@ -42,6 +47,7 @@ export class VaccineCardViewComponent implements OnInit {
     this.activatedRoute.queryParams.pipe(take(1)).subscribe((params) => {
       const { id: teiId } = params;
       this.store.select(getTotalVaccinationCardData).subscribe((count) => {
+        this.isVaccinationListLoaded = count > 0;
         if (!(count > 0)) {
           this.getAndSetCurrentVaccinatationCard(teiId);
         }
@@ -49,8 +55,18 @@ export class VaccineCardViewComponent implements OnInit {
     });
   }
 
-  async getAndSetCurrentVaccinatationCard(teiId: string) {
-    console.log({ teiId });
+  async getAndSetCurrentVaccinatationCard(seletectedTeiId: string) {
+    this.store.dispatch(
+      LoadVaccinationCardDataById({
+        vaccinationCardConfigs: {
+          ...{},
+          headerConfigs: vaccinationCardConfigs.headers,
+          program: vaccinationCardConfigs.programId,
+          programStage: vaccinationCardConfigs.programStageId,
+        },
+        seletectedTeiId,
+      })
+    );
   }
 
   onPrintVaccinaCard() {
@@ -58,6 +74,9 @@ export class VaccineCardViewComponent implements OnInit {
   }
 
   onGoBackHome() {
+    if (!this.isVaccinationListLoaded) {
+      this.store.dispatch(ClearVaccinationCardData());
+    }
     this.router.navigate([""]);
   }
 }

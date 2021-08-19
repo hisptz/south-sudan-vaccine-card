@@ -22,16 +22,20 @@
 			</div>
 		</div>
 	</div>
-	<div>
-		<app-vaccine-card-qr-code
-			[selectedVaccinationCard]="selectedVaccinationCard$ | async"
-		></app-vaccine-card-qr-code>
-	</div>
+
 	<div class="vaccine-card" *ngIf="selectedVaccinationCard$ | async">
 		<div>
 			<app-vaccine-card-header></app-vaccine-card-header>
 		</div>
 		<div class="row">
+			<div>
+				<app-vaccine-card-qr-code
+					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
+				></app-vaccine-card-qr-code>
+			</div>
+
+			{{ selectedVaccinationCard$ | async | json }}
+			<!--
 			<div class="col-6">
 				<div>
 					<app-vaccine-card-bio
@@ -47,6 +51,7 @@
 					></app-vaccine-card-dose>
 				</div>
 			</div>
+			-->
 		</div>
 	</div>
 </div>
