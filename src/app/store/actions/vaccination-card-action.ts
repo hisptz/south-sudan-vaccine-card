@@ -4,6 +4,7 @@ import { VaccinationCard } from "src/app/core/models/vaccination-card";
 
 export enum VaccinationCardActionTypes {
   LoadVaccinationCardData = "[Vaccination Card] Load Vaccination Card Data",
+  LoadVaccinationCardDataById = "[Vaccination Card] Load Vaccination Card Data by Id",
   AddVaccinationCardData = "[Vaccination Card] Add Vaccination Card Data",
   ClearVaccinationCardData = "[Vaccination Card] Clear Vaccination Card Data",
   UpdateVaccinationCardDataProgress = "[Vaccination Card] Update Vaccination Card Data progress",
@@ -16,6 +17,14 @@ export const LoadVaccinationCardData = createAction(
   props<{
     vaccinationCardConfigs: any;
     selectedOrgUnits: any;
+  }>()
+);
+
+export const LoadVaccinationCardDataById = createAction(
+  VaccinationCardActionTypes.LoadVaccinationCardDataById,
+  props<{
+    vaccinationCardConfigs: any;
+    seletectedTeiId: string;
   }>()
 );
 

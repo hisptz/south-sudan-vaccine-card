@@ -8,6 +8,7 @@ import * as _ from "lodash";
 import {
   AddVaccinationCardData,
   LoadVaccinationCardData,
+  LoadVaccinationCardDataById,
   LoadVaccinationCardDataFail,
   UpdateVaccinationCardDataProgress,
 } from "../actions";
@@ -21,6 +22,20 @@ import {
 
 @Injectable()
 export class VaccinationCardDataEffects {
+  LoadVaccinationCardDataById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LoadVaccinationCardDataById),
+      switchMap((actions) =>
+        this.getVaccinationCardDataByIdFromServer(actions).pipe(
+          map((vaccinationCardData: Array<VaccinationCard>) =>
+            AddVaccinationCardData({ vaccinationCardData })
+          ),
+          catchError((error: any) => of(LoadVaccinationCardDataFail({ error })))
+        )
+      )
+    )
+  );
+
   LoadVaccinationCardData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LoadVaccinationCardData),
@@ -34,6 +49,15 @@ export class VaccinationCardDataEffects {
       )
     )
   );
+
+  getVaccinationCardDataByIdFromServer(parameters: any) {
+    const { vaccinationCardConfigs, seletectedTeiId } = parameters;
+    return new Observable((observer) => {
+      console.log({ vaccinationCardConfigs, seletectedTeiId });
+      observer.next([]);
+      observer.complete();
+    });
+  }
 
   getVaccinationCardDataFromServer(parameters: any) {
     const { vaccinationCardConfigs, selectedOrgUnits } = parameters;
