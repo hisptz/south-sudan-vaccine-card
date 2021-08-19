@@ -1,5 +1,5 @@
 <div class="app-container">
-	<div class="row action-buttons">
+	<div class="row action-buttons" *ngIf="!(isLoading$ | async)">
 		<div class="col">
 			<div class="d-flex justify-content-between">
 				<div>
@@ -23,6 +23,9 @@
 		</div>
 	</div>
 
+	<div *ngIf="isLoading$ | async">
+		<app-loader></app-loader>
+	</div>
 	<div class="vaccine-card" *ngIf="selectedVaccinationCard$ | async">
 		<div>
 			<app-vaccine-card-header></app-vaccine-card-header>

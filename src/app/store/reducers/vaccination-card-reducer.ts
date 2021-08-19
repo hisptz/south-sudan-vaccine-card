@@ -8,6 +8,7 @@ import {
   AddVaccinationCardData,
   UpdateVaccinationCardDataProgress,
   ClearVaccinationCardData,
+  LoadVaccinationCardDataById,
 } from "../actions/vaccination-card-action";
 import {
   initialVaccinationCardState,
@@ -25,6 +26,10 @@ export const reducer = createReducer(
   on(LoadVaccinationCardData, (state) => ({
     ...state,
     ...initialVaccinationCardState,
+    ...loadingBaseState,
+  })),
+  on(LoadVaccinationCardDataById, (state) => ({
+    ...state,
     ...loadingBaseState,
   })),
   on(ClearVaccinationCardData, (state) => ({

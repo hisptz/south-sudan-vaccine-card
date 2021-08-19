@@ -53,10 +53,36 @@ export class VaccinationCardDataEffects {
   getVaccinationCardDataByIdFromServer(parameters: any) {
     const { vaccinationCardConfigs, seletectedTeiId } = parameters;
     return new Observable((observer) => {
-      console.log({ vaccinationCardConfigs, seletectedTeiId });
-      observer.next([]);
-      observer.complete();
+      this.getAllVaccinationCardDataById(
+        vaccinationCardConfigs,
+        seletectedTeiId
+      )
+        .then((data) => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch((error) => observer.error(error));
     });
+  }
+
+  async getAllVaccinationCardDataById(
+    vaccinationCardConfigs: any,
+    seletectedTeiId: string
+  ) {
+    const vaccinationCardData = [];
+    const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,programStage,dataValues[dataElement,value]]]`;
+    try {
+      const { headerConfigs, program, programStage } = vaccinationCardConfigs;
+      // const organisationUnits: any = await this.getAllOrganisationUnits();
+      const programMetadata: any = await this.getProgramMetadata(
+        program,
+        programStage
+      );
+      console.log({ programMetadata, seletectedTeiId, fields });
+    } catch (error) {
+      console.log({ error: error.message || error });
+    }
+    return _.uniqBy(_.flattenDeep(vaccinationCardData), "tei");
   }
 
   getVaccinationCardDataFromServer(parameters: any) {
@@ -139,7 +165,7 @@ export class VaccinationCardDataEffects {
         }
       }
     } catch (error) {
-      console.log({ error });
+      console.log({ error: error.message || error });
     }
     return _.uniqBy(_.flattenDeep(vaccinationCardData), "tei");
   }

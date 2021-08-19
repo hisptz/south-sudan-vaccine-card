@@ -10,6 +10,7 @@ import { State } from "src/app/store/reducers";
 import {
   getSelectedVaccinationCard,
   getTotalVaccinationCardData,
+  getVaccinationCardDataLoadingStatus,
 } from "src/app/store/selectors";
 import { VaccinationCard } from "src/app/core/models/vaccination-card";
 import { take } from "rxjs/operators";
@@ -25,6 +26,7 @@ import {
 })
 export class VaccineCardViewComponent implements OnInit {
   selectedVaccinationCard$: Observable<VaccinationCard>;
+  isLoading$: Observable<boolean>;
 
   isVaccinationListLoaded: boolean;
 
@@ -37,6 +39,7 @@ export class VaccineCardViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading$ = this.store.select(getVaccinationCardDataLoadingStatus);
     this.selectedVaccinationCard$ = this.store.select(
       getSelectedVaccinationCard
     );
