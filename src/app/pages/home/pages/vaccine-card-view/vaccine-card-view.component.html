@@ -22,6 +22,11 @@
 			</div>
 		</div>
 	</div>
+	<div>
+		<app-vaccine-card-qr-code
+			[selectedVaccinationCard]="selectedVaccinationCard$ | async"
+		></app-vaccine-card-qr-code>
+	</div>
 	<div class="vaccine-card" *ngIf="selectedVaccinationCard$ | async">
 		<div>
 			<app-vaccine-card-header></app-vaccine-card-header>
