@@ -49,12 +49,15 @@ export class VaccineCardViewComponent implements OnInit {
   getCurrentTeiIdFromActiveRoute() {
     this.activatedRoute.queryParams.pipe(take(1)).subscribe((params) => {
       const { id: teiId } = params;
-      this.store.select(getTotalVaccinationCardData).subscribe((count) => {
-        this.isVaccinationListLoaded = count > 0;
-        if (!(count > 0)) {
-          this.getAndSetCurrentVaccinatationCard(teiId);
-        }
-      });
+      this.store
+        .select(getTotalVaccinationCardData)
+        .pipe(take(1))
+        .subscribe((count) => {
+          this.isVaccinationListLoaded = count > 0;
+          if (!(count > 0)) {
+            this.getAndSetCurrentVaccinatationCard(teiId);
+          }
+        });
     });
   }
 
