@@ -10,7 +10,12 @@
 				*ngFor="let vaccinaDoseRow of vaccinaDoseRowValues"
 				class="horizontal-line"
 			>
-				<td *ngFor="let value of vaccinaDoseRow">{{ value }}</td>
+				<td
+					*ngFor="let value of vaccinaDoseRow"
+					class="vaccine-card-dose-table-value"
+				>
+					{{ value }}
+				</td>
 			</tr>
 		</tbody>
 	</table>

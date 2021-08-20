@@ -8,6 +8,9 @@
 	font-weight: bold;
 }
 
+.vaccine-card-dose-table-value {
+	font-size: 0.8rem;
+}
 
 .horizontal-line {
 	border-bottom: 1px solid #e5e5e5;

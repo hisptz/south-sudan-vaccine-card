@@ -56,7 +56,7 @@ export function getQrCodeDosesData(
               data?.value !== "" ? data.value : []
             )
           ).length === 0;
-        return hasSelectedDoseEmpty
+        const values =  hasSelectedDoseEmpty
           ? []
           : _.map(VACCINE_CARD_QR_CODE?.doseData || [], (doseConfig: any) => {
               const { ids, name } = doseConfig;
@@ -77,9 +77,10 @@ export function getQrCodeDosesData(
               );
               return `${name} : ${value}`;
             });
+            return _.join(_.flattenDeep(values), ", ")
       })
     ),
-    ", "
+    "\n "
   );
 }
 
@@ -107,26 +108,6 @@ export function getVaccineCardBioData(
       return { name, value };
     });
   });
-}
-
-export function getVaccineCardBioLocation(
-  selectedVaccinationCard: VaccinationCard
-) {
-  return _.join(
-    _.filter(
-      _.flattenDeep(
-        _.map(VACCINE_CARD_LOCATION, (id: string) => {
-          const cardData = _.find(
-            selectedVaccinationCard.headers,
-            (data: VaccinationCardHeader) => data?.id === id
-          );
-          return cardData && cardData.value ? cardData.value : "";
-        })
-      ),
-      (value: string) => value != ""
-    ),
-    " > "
-  );
 }
 
 export function getDoseIndexes(selectedVaccinationCard: VaccinationCard) {

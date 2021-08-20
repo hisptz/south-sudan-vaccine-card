@@ -2,14 +2,6 @@
 	margin: 10px 1vw;
 }
 
-.vaccine-card-water-mark {
-	width: calc(100% - 20px) !important;
-	background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Coat_of_arms_of_Tanzania.svg/400px-Coat_of_arms_of_Tanzania.svg.png');
-	background-repeat: no-repeat;
-	opacity: 0.8;
-	background-position: center;
-	background-size: 30%;
-}
 .vaccine-card {
 	margin-top: 10px;
 	table-layout: fixed !important;
@@ -19,6 +11,33 @@
 	margin-bottom: 0px !important;
 	background-color: #fff;
 	opacity: 0.9;
+}
+
+.top-border,
+.bottom-border {
+	background: repeating-linear-gradient(
+		to right,
+		#2f5df1,
+		#f6fa13,
+		#000000,
+		#f6fa13,
+		#4ea039
+	);
+	width: 10px !important;
+}
+.right-border,
+.left-border {
+	width: 100%;
+	margin: 0px;
+	background: linear-gradient(
+		to bottom,
+		#2f5df1 2px,
+		#f6fa13,
+		#000000,
+		#f6fa13,
+		#4ea039
+	);
+	height: 10px;
 }
 
 .blue-border {
