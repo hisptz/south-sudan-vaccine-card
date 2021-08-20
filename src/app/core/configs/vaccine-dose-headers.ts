@@ -25,4 +25,18 @@ export const VACCINE_CARD_BIO = [
   ],
 ];
 
-export const VACCINE_CARD_QRCODE = [];
+export const VACCINE_CARD_QR_CODE = {
+  bioData: [
+    { name: "Identification number", ids: ["KSr2yTdu1AI"] },
+    { name: "Full name", ids: ["sB1IHYu2xQT", "ENRjVGxVL6l"] },
+    { name: "Date of birth", ids: ["NI0QRzJvQ0k"] },
+    { name: "Age", ids: ["Rv8WM2mTuS5"] },
+    { name: "Gender", ids: ["oindugucx72"] },
+    { name: "Phone #", ids: ["fctSQp5nAYl"] },
+  ],
+  doseData: [
+    { name: "Vaccine", ids: ["bbnyNYD1wgS"] },
+    { name: "Date", ids: ["eventDate"] },
+    { name: "Place", ids: ["eRi9ifg9v5h"] },
+  ],
+};
