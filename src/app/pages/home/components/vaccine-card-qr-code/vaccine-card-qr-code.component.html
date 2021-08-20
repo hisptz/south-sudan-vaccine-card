@@ -1,9 +1,9 @@
-<div class="vaccine-card-qr-code-container vaccine-card-qr-code">
+<div class="vaccine-card-qr-code-container">
 	<div class="row">
-		<div class="col-2">
+		<div class="col-2 vaccine-card-qr-code">
 			<div *ngIf="selectedVaccinationCard">
 				<div>Scan to validate</div>
-				<qr-code [value]="qrdCode" size="110"> </qr-code>
+				<qr-code [value]="qrdCode" size="130"> </qr-code>
 			</div>
 		</div>
 		<div class="col">
@@ -20,7 +20,7 @@
 			<div class="vaccine-card-note">
 				<p>
 					Please keep this card safe and produce to the health worker whenever
-					you are seeking the caccination/health services.
+					you are seeking the vaccination/health services.
 				</p>
 			</div>
 		</div>
