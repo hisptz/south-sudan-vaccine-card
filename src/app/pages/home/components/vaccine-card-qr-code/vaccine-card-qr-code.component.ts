@@ -4,8 +4,8 @@ import * as _ from "lodash";
 import { VaccinationCard } from "src/app/core/models/vaccination-card";
 import {
   getDoseIndexes,
-  getDosesHeaderValues,
-  getDosesRowValues,
+  getQrCodeBioData,
+  getQrCodeDosesData,
 } from "../../helpers/get_selected_vaccine_card_data";
 
 @Component({
@@ -22,36 +22,14 @@ export class VaccineCardQrCodeComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.selectedVaccinationCard && this.selectedVaccinationCard.headers) {
+      const vaccineCardUrl = window?.location?.href || "";
       const doses: any = getDoseIndexes(this.selectedVaccinationCard);
-      const vaccinaDoseRowValues: any = getDosesRowValues(
+      const bioData = getQrCodeBioData(this.selectedVaccinationCard);
+      const vaccineDose = getQrCodeDosesData(
         doses,
         this.selectedVaccinationCard
       );
-      const vaccinaDoseHeaderValues = getDosesHeaderValues(
-        this.selectedVaccinationCard
-      );
-      const vaccineCardUrl = window?.location?.href || "";
-      const vaccineDose = _.join(
-        _.flattenDeep(
-          _.map(vaccinaDoseRowValues, (vaccinaDoseRow) => {
-            return _.join(
-              _.flattenDeep(
-                _.map(vaccinaDoseHeaderValues, (vaccinaDoseHeader) => {
-                  const index = _.indexOf(
-                    vaccinaDoseHeaderValues,
-                    vaccinaDoseHeader
-                  );
-                  const value = vaccinaDoseRow[index] || "";
-                  return `${vaccinaDoseHeader} : ${value}`;
-                })
-              ),
-              ", "
-            );
-          })
-        ),
-        "\n\n"
-      );
-      this.qrdCode = `name : Joseph Changlo\nGender : M\nAge : 30\n${vaccineDose}`;
+      this.qrdCode = `${bioData}\n\n${vaccineDose}`;
       this.qrdCode += vaccineCardUrl ? `\n\n\n${vaccineCardUrl}` : "";
     }
   }
