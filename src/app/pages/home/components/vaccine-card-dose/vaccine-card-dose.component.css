@@ -1,5 +1,16 @@
 .vaccine-card-dose-container {
+	margin-top: 50px;
 	margin-bottom: 10px;
+}
+
+.vaccine-card-dose-table-header {
+	background-color: #b1d0fe;
+	font-weight: bold;
+}
+
+
+.horizontal-line {
+	border-bottom: 1px solid #e5e5e5;
 }
 
 tbody {
@@ -14,29 +25,11 @@ tbody tr {
 	table-layout: fixed;
 }
 
-.inner-data-table {
-	padding: 0;
-}
-
-@media print {
-	th,
-	td {
-		font-size: 0.85rem !important;
-		padding-left: 5px !important;
-		padding-top: 1px !important;
-		padding-bottom: 1px !important;
-	}
-
-	.inner-data-table {
-		padding: 0 !important;
-	}
-}
-
 th,
 td {
 	padding-left: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	word-wrap: break-word;
 }
 
