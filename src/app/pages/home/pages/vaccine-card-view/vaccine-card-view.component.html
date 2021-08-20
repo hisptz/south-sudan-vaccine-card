@@ -22,34 +22,133 @@
 			</div>
 		</div>
 	</div>
+
 	<div *ngIf="isLoading$ | async">
 		<app-loader></app-loader>
 	</div>
+
 	<div class="vaccine-card" *ngIf="selectedVaccinationCard$ | async">
-		<div>
-			<app-vaccine-card-header></app-vaccine-card-header>
-		</div>
-		<div class="row">
-			<div class="col">
-				<app-vaccine-card-bio
-					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
-				></app-vaccine-card-bio>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<app-vaccine-card-dose
-					[doseIndex]="doseIndex"
-					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
-				></app-vaccine-card-dose>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<app-vaccine-card-qr-code
-					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
-				></app-vaccine-card-qr-code>
+		<div class="black-border">
+			<div class="white-border">
+				<div class="red-border">
+					<div class="white-border">
+						<div class="green-border">
+							<div class="yellow-border">
+								<div class="blue-border">
+									<div
+										style="
+											width: calc(100% - 20px) !important;
+											background-image: url(assets/icons/minister.png);
+											background-repeat: no-repeat;
+											opacity: 0.9;
+											background-position: center;
+											background-size: 25%;
+										"
+									>
+										<div
+											style="
+												table-layout: fixed !important;
+												width: 100% !important;
+												word-wrap: break-word !important;
+												word-break: break-all !important;
+												margin-bottom: 0px !important;
+												background-color: #fff;
+												opacity: 0.9;
+											"
+										>
+											<div>
+												<app-vaccine-card-header></app-vaccine-card-header>
+											</div>
+											<div class="row">
+												<div class="col">
+													<app-vaccine-card-bio
+														[selectedVaccinationCard]="
+															selectedVaccinationCard$ | async
+														"
+													></app-vaccine-card-bio>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<app-vaccine-card-dose
+														[doseIndex]="doseIndex"
+														[selectedVaccinationCard]="
+															selectedVaccinationCard$ | async
+														"
+													></app-vaccine-card-dose>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													<app-vaccine-card-qr-code
+														[selectedVaccinationCard]="
+															selectedVaccinationCard$ | async
+														"
+													></app-vaccine-card-qr-code>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<!--
+<div *ngIf="isLoading$ | async">
+		<app-loader></app-loader>
+	</div>
+	<div class="vaccine-card" *ngIf="selectedVaccinationCard$ | async">
+		<div class="black-border">
+			<div class="white-border">
+				<div class="red-border">
+					<div class="white-border">
+						<div class="green-border">
+							<div class="yellow-border">
+								<div class="blue-border">
+									<div>
+										<app-vaccine-card-header></app-vaccine-card-header>
+									</div>
+									<div class="row">
+										<div class="col">
+											<app-vaccine-card-bio
+												[selectedVaccinationCard]="
+													selectedVaccinationCard$ | async
+												"
+											></app-vaccine-card-bio>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<app-vaccine-card-dose
+												[doseIndex]="doseIndex"
+												[selectedVaccinationCard]="
+													selectedVaccinationCard$ | async
+												"
+											></app-vaccine-card-dose>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<app-vaccine-card-qr-code
+												[selectedVaccinationCard]="
+													selectedVaccinationCard$ | async
+												"
+											></app-vaccine-card-qr-code>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+-->
