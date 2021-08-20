@@ -5,7 +5,7 @@
 }
 
 .icon {
-	width: 10rem;
+	width: 5rem;
 }
 
 .vaccine-card-herader-sub-container {
@@ -19,18 +19,18 @@
 }
 
 h2 {
-	font-size: 2.3rem;
+	font-size: 1.2rem;
 }
 
-h2 {
-	font-size: 2.1rem;
+h3 {
+	font-size: 1rem;
+}
+h2,
+h3 {
+	font-weight: bold;
 }
 
 @media print {
-	.icon {
-		width: 7rem !important;
-	}
-
 	.vaccine-card-herader-sub-container {
 		margin-top: 10px !important;
 	}
@@ -43,13 +43,5 @@ h2 {
 	.vaccine-card-herader-note {
 		margin-top: 10px !important;
 		margin-bottom: 10px !important;
-	}
-
-	h2 {
-		font-size: 1.5rem !important;
-	}
-
-	h2 {
-		font-size: 1.3rem !important;
 	}
 }

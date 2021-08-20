@@ -97,7 +97,9 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(
       SetSelectedVaccinationCard({ selectedVaccinationCardId })
     );
-    this.router.navigate(["vaccine-card-view"]);
+    this.router.navigate(["vaccine-card-view"], {
+      queryParams: { id: selectedVaccinationCardId },
+    });
   }
 
   presentSnackBar(message: string, action = "") {

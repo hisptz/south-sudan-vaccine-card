@@ -148,7 +148,7 @@
     {
       "id": "eventDate",
       "displayName": "",
-      "name": "Date of 1st dose",
+      "name": "Date of vaccination",
       "isDataElement": true,
       "isBoolean": false,
       "isDate": true,
@@ -170,7 +170,7 @@
     {
       "id": "Yp1F4txx8tm",
       "displayName": "",
-      "name": "Batch number/Lot number",
+      "name": "Batch number",
       "isDataElement": true,
       "isBoolean": false,
       "isDate": false,
@@ -179,12 +179,12 @@
       "doseIndex": 0
     },
     {
-      "id": "YTQulAldGOs",
+      "id": "LUIsbsm3okG",
       "displayName": "",
-      "name": "Vaccine Expiry date",
+      "name": "Doses administered",
       "isDataElement": true,
       "isBoolean": false,
-      "isDate": true,
+      "isDate": false,
       "isBioInfoCard": false,
       "isVisibleOnList": false,
       "doseIndex": 0
@@ -201,20 +201,9 @@
       "doseIndex": 0
     },
     {
-      "id": "FFWcps4MfuH",
-      "displayName": "",
-      "name": "Date of Second done",
-      "isDataElement": true,
-      "isBoolean": false,
-      "isDate": true,
-      "isBioInfoCard": false,
-      "isVisibleOnList": false,
-      "doseIndex": 0
-    },
-    {
       "id": "eventDate",
       "displayName": "",
-      "name": "Date of 2nd dose",
+      "name": "Date of vaccination",
       "isDataElement": true,
       "isBoolean": false,
       "isDate": true,
@@ -236,7 +225,7 @@
     {
       "id": "Yp1F4txx8tm",
       "displayName": "",
-      "name": "Batch number/Lot number",
+      "name": "Batch number",
       "isDataElement": true,
       "isBoolean": false,
       "isDate": false,
@@ -245,12 +234,12 @@
       "doseIndex": 1
     },
     {
-      "id": "YTQulAldGOs",
+      "id": "LUIsbsm3okG",
       "displayName": "",
-      "name": "Vaccine Expiry date",
+      "name": "Doses administered",
       "isDataElement": true,
       "isBoolean": false,
-      "isDate": true,
+      "isDate": false,
       "isBioInfoCard": false,
       "isVisibleOnList": false,
       "doseIndex": 1
@@ -267,20 +256,9 @@
       "doseIndex": 1
     },
     {
-      "id": "FFWcps4MfuH",
-      "displayName": "",
-      "name": "Date of Third done",
-      "isDataElement": true,
-      "isBoolean": false,
-      "isDate": true,
-      "isBioInfoCard": false,
-      "isVisibleOnList": false,
-      "doseIndex": 1
-    },
-    {
       "id": "eventDate",
       "displayName": "",
-      "name": "Date of 3rd dose",
+      "name": "Date of vaccination",
       "isDataElement": true,
       "isBoolean": false,
       "isDate": true,
@@ -302,7 +280,7 @@
     {
       "id": "Yp1F4txx8tm",
       "displayName": "",
-      "name": "Batch number/Lot number",
+      "name": "Batch number",
       "isDataElement": true,
       "isBoolean": false,
       "isDate": false,
@@ -311,12 +289,12 @@
       "doseIndex": 2
     },
     {
-      "id": "YTQulAldGOs",
+      "id": "LUIsbsm3okG",
       "displayName": "",
-      "name": "Vaccine Expiry date",
+      "name": "Doses administered",
       "isDataElement": true,
       "isBoolean": false,
-      "isDate": true,
+      "isDate": false,
       "isBioInfoCard": false,
       "isVisibleOnList": false,
       "doseIndex": 2

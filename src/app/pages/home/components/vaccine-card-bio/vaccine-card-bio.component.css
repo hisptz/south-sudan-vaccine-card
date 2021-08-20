@@ -1,27 +1,23 @@
-.vaccine-card-bio {
-	padding: 10px;
-	border-radius: 5px;
-	border: 1px solid #dee2e6;
-}
-
 .vaccine-card-bio-container {
-	margin-bottom: 5px;
+	margin-top: 50px;
+}
+.vaccine-card-bio-location {
+	text-align: center;
+	font-size: 1.2rem;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
-.vaccine-card-bio-label {
-	font-weight: 100;
+.horizontal-line {
+	border-bottom: 1px solid #e5e5e5;
 }
 
 .vaccine-card-bio-value {
-	font-weight: bold;
+	font-size: 0.8rem;
 }
 
-@media print {
-	th,
-	td {
-		font-size: 1.1rem !important;
-		padding: 3px !important;
-	}
+.vaccine-card-bio-title {
+	font-weight: bold;
 }
 
 tbody {
@@ -39,8 +35,8 @@ tbody tr {
 th,
 td {
 	padding-left: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	word-wrap: break-word;
 }
 

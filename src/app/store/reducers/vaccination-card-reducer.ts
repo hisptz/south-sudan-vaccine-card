@@ -8,6 +8,8 @@ import {
   AddVaccinationCardData,
   UpdateVaccinationCardDataProgress,
   ClearVaccinationCardData,
+  LoadVaccinationCardDataById,
+  AddVaccinationCardDataById,
 } from "../actions/vaccination-card-action";
 import {
   initialVaccinationCardState,
@@ -27,6 +29,10 @@ export const reducer = createReducer(
     ...initialVaccinationCardState,
     ...loadingBaseState,
   })),
+  on(LoadVaccinationCardDataById, (state) => ({
+    ...state,
+    ...loadingBaseState,
+  })),
   on(ClearVaccinationCardData, (state) => ({
     ...state,
     ...initialVaccinationCardState,
@@ -36,6 +42,19 @@ export const reducer = createReducer(
     ...loadedBaseState,
     vaccinationCardData,
   })),
+  on(
+    AddVaccinationCardDataById,
+    (state, { selectedVaccinationCardId, vaccinationCardData }) => ({
+      ...state,
+      ...loadedBaseState,
+      vaccinationCardData: [...state.vaccinationCardData, vaccinationCardData],
+      selectedVaccinationCard: _.find(
+        [...state.vaccinationCardData, vaccinationCardData],
+        (vaccinationCard: VaccinationCard) =>
+          vaccinationCard.tei === selectedVaccinationCardId
+      ),
+    })
+  ),
   on(SetSelectedVaccinationCard, (state, { selectedVaccinationCardId }) => ({
     ...state,
     ...loadedBaseState,

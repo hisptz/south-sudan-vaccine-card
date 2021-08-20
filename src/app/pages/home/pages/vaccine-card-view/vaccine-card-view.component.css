@@ -4,6 +4,73 @@
 
 .vaccine-card {
 	margin-top: 10px;
+	table-layout: fixed !important;
+	width: 100% !important;
+	word-wrap: break-word !important;
+	word-break: break-all !important;
+	margin-bottom: 0px !important;
+	background-color: #fff;
+	opacity: 0.9;
+}
+
+.top-border,
+.bottom-border {
+	background: repeating-linear-gradient(
+		to right,
+		#2f5df1,
+		#f6fa13,
+		#000000,
+		#f6fa13,
+		#4ea039
+	);
+	width: 10px !important;
+}
+.right-border,
+.left-border {
+	width: 100%;
+	margin: 0px;
+	background: linear-gradient(
+		to bottom,
+		#2f5df1 2px,
+		#f6fa13,
+		#000000,
+		#f6fa13,
+		#4ea039
+	);
+	height: 10px;
+}
+
+.blue-border {
+	border: 1px;
+	border-style: solid;
+	border-color: #0f47af;
+}
+
+.yellow-border {
+	border: 1px;
+	border-style: solid;
+	border-color: #fcdd09;
+}
+.black-border {
+	border: 1px;
+	border-style: solid;
+	border-color: #000000;
+}
+
+.red-border {
+	border: 1px;
+	border-style: solid;
+	border-color: #da121a;
+}
+.green-border {
+	border: 1px;
+	border-style: solid;
+	border-color: #078930;
+}
+.white-border {
+	border: 1px;
+	border-style: solid;
+	border-color: #ffffff;
 }
 
 @media print {
