@@ -17,24 +17,9 @@ export const getVaccinationCardList = createSelector(
   (state: VaccinationCardState) => state.vaccinationCardData
 );
 
-export const getSelectedVaccinationCardDosesIndex = createSelector(
+export const getTotalVaccinationCardData = createSelector(
   getVaccinationCardDataState,
-  (state: VaccinationCardState) => {
-    const selectedVaccinationCard: VaccinationCard =
-      state.selectedVaccinationCard;
-    return _.uniq(
-      _.flattenDeep(
-        _.map(
-          _.filter(
-            selectedVaccinationCard.headers || [],
-            (headerConfig: VaccinationCardHeader) =>
-              headerConfig.hasOwnProperty("doseIndex")
-          ),
-          (headerConfig: VaccinationCardHeader) => headerConfig.doseIndex
-        )
-      )
-    );
-  }
+  (state: VaccinationCardState) => state.vaccinationCardData.length || 0
 );
 
 export const getSelectedVaccinationCard = createSelector(

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
-import {
-  VaccinationCard,
-  VaccinationCardHeader,
-} from "src/app/core/models/vaccination-card";
+import { VaccinationCard } from "src/app/core/models/vaccination-card";
 
 import * as _ from "lodash";
+import {
+  getVaccineCardBioData,
+} from "../../helpers/get_selected_vaccine_card_data";
 
 @Component({
   selector: "app-vaccine-card-bio",
@@ -22,19 +22,8 @@ export class VaccineCardBioComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.selectedVaccinationCard && this.selectedVaccinationCard.headers) {
-      this.vaccineCardBioData = _.flattenDeep(
-        _.map(
-          _.filter(
-            this.selectedVaccinationCard.headers || [],
-            (headerConfig: VaccinationCardHeader) => headerConfig.isBioInfoCard
-          ),
-          (headerConfig: VaccinationCardHeader) => {
-            return {
-              name: headerConfig.displayName,
-              value: headerConfig.value,
-            };
-          }
-        )
+      this.vaccineCardBioData = getVaccineCardBioData(
+        this.selectedVaccinationCard
       );
     }
   }

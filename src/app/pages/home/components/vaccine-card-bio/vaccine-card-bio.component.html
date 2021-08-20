@@ -1,12 +1,23 @@
-<div class="vaccine-card-bio">
-	<table class="table-borderless">
-		<tbody>
-			<tr *ngFor="let bioData of vaccineCardBioData">
-				<td>
-					<span class="vaccine-card-bio-label">{{ bioData.name }} : </span>
-					<span class="vaccine-card-bio-value">{{ bioData.value }}</span>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="vaccine-card-bio-container">
+	<div class="row">
+		<div class="col">
+			<table class="table-borderless table-responsive table-hover">
+				<tbody>
+					<tr
+						*ngFor="let vaccineCardBioRow of vaccineCardBioData"
+						class="horizontal-line"
+					>
+						<td *ngFor="let bioData of vaccineCardBioRow">
+							<div class="vaccine-card-bio-title">
+								{{ bioData.name }}
+							</div>
+							<div class="vaccine-card-bio-value">
+								{{ bioData.value || '' }}
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

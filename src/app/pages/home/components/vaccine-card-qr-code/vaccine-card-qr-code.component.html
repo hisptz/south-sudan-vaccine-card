@@ -1,0 +1,28 @@
+<div class="vaccine-card-qr-code-container">
+	<div class="row">
+		<div class="col-2 vaccine-card-qr-code">
+			<div *ngIf="selectedVaccinationCard">
+				<div>Scan to validate</div>
+				<qr-code [value]="qrdCode" padding="5" size="140"> </qr-code>
+			</div>
+		</div>
+		<div class="col">
+			<div class="vaccine-card-qr-code-note"></div>
+			<hr />
+			<div class="vaccine-card-qr-code-note">Issued by :</div>
+			<hr />
+			<div class="vaccine-card-qr-code-note">Position</div>
+			<hr />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<div class="vaccine-card-note">
+				<p>
+					Please keep this card safe and produce to the health worker whenever
+					you are seeking the vaccination/health services.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

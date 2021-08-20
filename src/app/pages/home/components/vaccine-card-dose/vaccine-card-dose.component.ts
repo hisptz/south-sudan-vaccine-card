@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from "@angular/core";
-import {
-  VaccinationCard,
-  VaccinationCardHeader,
-} from "src/app/core/models/vaccination-card";
+import { VaccinationCard } from "src/app/core/models/vaccination-card";
 import * as _ from "lodash";
+import {
+  getDoseIndexes,
+  getDosesHeaderValues,
+  getDosesRowValues,
+} from "../../helpers/get_selected_vaccine_card_data";
 
 @Component({
   selector: "app-vaccine-card-dose",
@@ -11,45 +13,26 @@ import * as _ from "lodash";
   styleUrls: ["./vaccine-card-dose.component.css"],
 })
 export class VaccineCardDoseComponent implements OnInit {
-  @Input() doseIndex: number;
   @Input() selectedVaccinationCard: VaccinationCard;
 
-  //@TODO sofycode columns for next dose date
-  nextDoseDateId: string = "FFWcps4MfuH";
-  nextDoseLabel: string = "";
-  nextDoseDate: string = "";
+  vaccinaDoseRowValues: Array<any>;
+  vaccinaDoseHeaderValues: Array<any>;
 
-  vaccinaDoseCard: Array<any>;
-
-  constructor() {}
+  constructor() {
+    this.vaccinaDoseRowValues = [];
+    this.vaccinaDoseHeaderValues = [];
+  }
 
   ngOnInit(): void {
     if (this.selectedVaccinationCard && this.selectedVaccinationCard.headers) {
-      const selectedDoseData: Array<VaccinationCardHeader> = _.filter(
-        this.selectedVaccinationCard.headers || [],
-        (headerConfig: VaccinationCardHeader) =>
-          headerConfig.hasOwnProperty("doseIndex") &&
-          headerConfig.doseIndex === this.doseIndex
+      const doses: any = getDoseIndexes(this.selectedVaccinationCard);
+      this.vaccinaDoseRowValues = getDosesRowValues(
+        doses,
+        this.selectedVaccinationCard
       );
-      if (selectedDoseData && selectedDoseData.length > 0) {
-        const nextDoseData = _.find(
-          selectedDoseData,
-          (data: VaccinationCardHeader) => data.id === this.nextDoseDateId
-        );
-        if (nextDoseData) {
-          this.nextDoseLabel = nextDoseData.displayName;
-          this.nextDoseDate = nextDoseData.value;
-        }
-        this.vaccinaDoseCard = _.map(
-          _.filter(
-            selectedDoseData,
-            (data: VaccinationCardHeader) => data.id !== this.nextDoseDateId
-          ),
-          (data: VaccinationCardHeader) => {
-            return [data.displayName, data.value];
-          }
-        );
-      }
+      this.vaccinaDoseHeaderValues = getDosesHeaderValues(
+        this.selectedVaccinationCard
+      );
     }
   }
 }
