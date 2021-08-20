@@ -3,11 +3,85 @@ import {
   VACCINE_CARD_DOSES_HEADERS,
   VACCINE_CARD_LOCATION,
   VACCINE_CARD_BIO,
+  VACCINE_CARD_QR_CODE,
 } from "src/app/core/configs/vaccine-dose-headers";
 import {
   VaccinationCard,
   VaccinationCardHeader,
 } from "src/app/core/models/vaccination-card";
+
+export function getQrCodeBioData(selectedVaccinationCard: VaccinationCard) {
+  return _.join(
+    _.flattenDeep(
+      _.map(VACCINE_CARD_QR_CODE.bioData || [], (bioDataConfig) => {
+        const { name, ids } = bioDataConfig;
+        const value = _.join(
+          _.filter(
+            _.flattenDeep(
+              _.map(ids, (id: string) => {
+                const cardData = _.find(
+                  selectedVaccinationCard.headers,
+                  (data: VaccinationCardHeader) => data?.id === id
+                );
+                return cardData && cardData.value ? cardData.value : "";
+              })
+            ),
+            (value: string) => value != ""
+          ),
+          " "
+        );
+        return `${name} : ${value}`;
+      })
+    ),
+    "\n"
+  );
+}
+
+export function getQrCodeDosesData(
+  doses: any,
+  selectedVaccinationCard: VaccinationCard
+) {
+  return _.join(
+    _.flattenDeep(
+      _.map(doses, (doseIndex: any) => {
+        const selectedDose: Array<VaccinationCardHeader> = _.filter(
+          selectedVaccinationCard.headers || [],
+          (headerConfig: VaccinationCardHeader) =>
+            headerConfig.hasOwnProperty("doseIndex") &&
+            `${headerConfig.doseIndex}` === `${doseIndex}`
+        );
+        const hasSelectedDoseEmpty =
+          _.flattenDeep(
+            _.map(selectedDose, (data: any) =>
+              data?.value !== "" ? data.value : []
+            )
+          ).length === 0;
+        return hasSelectedDoseEmpty
+          ? []
+          : _.map(VACCINE_CARD_QR_CODE?.doseData || [], (doseConfig: any) => {
+              const { ids, name } = doseConfig;
+              const value = _.join(
+                _.filter(
+                  _.flattenDeep(
+                    _.map(ids, (id: string) => {
+                      const cardData = _.find(
+                        selectedDose,
+                        (data: VaccinationCardHeader) => data?.id === id
+                      );
+                      return cardData && cardData.value ? cardData.value : "";
+                    })
+                  ),
+                  (value: string) => value != ""
+                ),
+                " "
+              );
+              return `${name} : ${value}`;
+            });
+      })
+    ),
+    ", "
+  );
+}
 
 export function getVaccineCardBioData(
   selectedVaccinationCard: VaccinationCard
@@ -30,8 +104,7 @@ export function getVaccineCardBioData(
         ),
         " "
       );
-      console.log(name, ids);
-      return { ...bioData, value };
+      return { name, value };
     });
   });
 }
