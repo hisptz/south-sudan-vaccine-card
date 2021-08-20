@@ -22,7 +22,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div *ngIf="isLoading$ | async">
 		<app-loader></app-loader>
 	</div>
@@ -31,30 +30,26 @@
 			<app-vaccine-card-header></app-vaccine-card-header>
 		</div>
 		<div class="row">
-			<div>
+			<div class="col">
+				<app-vaccine-card-bio
+					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
+				></app-vaccine-card-bio>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<app-vaccine-card-dose
+					[doseIndex]="doseIndex"
+					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
+				></app-vaccine-card-dose>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
 				<app-vaccine-card-qr-code
 					[selectedVaccinationCard]="selectedVaccinationCard$ | async"
 				></app-vaccine-card-qr-code>
 			</div>
-
-			{{ selectedVaccinationCard$ | async | json }}
-			<!--
-			<div class="col-6">
-				<div>
-					<app-vaccine-card-bio
-						[selectedVaccinationCard]="selectedVaccinationCard$ | async"
-					></app-vaccine-card-bio>
-				</div>
-			</div>
-			<div class="col-6">
-				<div *ngFor="let doseIndex of vaccineDosesIndex$ | async">
-					<app-vaccine-card-dose
-						[doseIndex]="doseIndex"
-						[selectedVaccinationCard]="selectedVaccinationCard$ | async"
-					></app-vaccine-card-dose>
-				</div>
-			</div>
-			-->
 		</div>
 	</div>
 </div>

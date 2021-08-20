@@ -1,3 +1,17 @@
 .vaccine-card-qr-code {
-	max-width: 2rem;
+	text-align: center;
+}
+
+.vaccine-card-qr-code-note {
+	line-height: 1.2rem;
+}
+
+.vaccine-card-qr-code-container {
+	margin-top: 50px;
+}
+
+.vaccine-card-note {
+	margin-top: 30px;
+	padding: 10px;
+	font-weight: lighter;
 }
