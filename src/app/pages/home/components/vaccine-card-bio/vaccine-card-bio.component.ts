@@ -12,14 +12,11 @@ import { getVaccineCardBioData } from "../../helpers/get_selected_vaccine_card_d
 export class VaccineCardBioComponent implements OnInit {
   @Input() selectedVaccinationCard: VaccinationCard;
 
-  isLoading :boolean;
+  isLoading: boolean;
 
-
-  fullName : string;
-  dateOfBirth : string;
-  identificationNumber :string;
-
-
+  fullName: string;
+  dateOfBirth: string;
+  identificationNumber: string;
 
   constructor() {
     this.isLoading = true;
@@ -30,21 +27,28 @@ export class VaccineCardBioComponent implements OnInit {
       const vaccineCardBioData = getVaccineCardBioData(
         this.selectedVaccinationCard
       );
-      this.fullName = this.getVaccineCardBioDataByKey(vaccineCardBioData, "fullName");
-      this.dateOfBirth = this.getVaccineCardBioDataByKey(vaccineCardBioData, "dateOfBirth");
-      this.identificationNumber = this.getVaccineCardBioDataByKey(vaccineCardBioData, "identificationNumber");
+      this.fullName = this.getVaccineCardBioDataByKey(
+        vaccineCardBioData,
+        "fullName"
+      );
+      this.dateOfBirth = this.getVaccineCardBioDataByKey(
+        vaccineCardBioData,
+        "dateOfBirth"
+      );
+      this.identificationNumber = this.getVaccineCardBioDataByKey(
+        vaccineCardBioData,
+        "identificationNumber"
+      );
       this.isLoading = false;
-
     }
   }
 
-  getVaccineCardBioDataByKey(vaccineCardBioData :Array<any>, key: string){
-    let value = "";
-    console.log({key, vaccineCardBioData})
-
-value = key;
-    return value;
+  getVaccineCardBioDataByKey(vaccineCardBioData: Array<any>, key: string) {
+    const bioData = _.find(
+      vaccineCardBioData,
+      (vaccineCardBio: any) =>
+        vaccineCardBio && vaccineCardBio.id && vaccineCardBio.id == key
+    );
+    return bioData && bioData.value ? bioData.value : "-";
   }
-
-  
 }

@@ -2,9 +2,11 @@
 	margin-top: 50px;
 }
 .vaccine-card-bio-info {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
+	text-align: left;
 	padding-right: 20px;
 	padding-left: 20px;
+	overflow-wrap: break-word;
 }
 .vaccine-card-bio-location {
 	text-align: center;
