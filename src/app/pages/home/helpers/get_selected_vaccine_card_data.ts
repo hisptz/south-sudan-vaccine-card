@@ -56,7 +56,7 @@ export function getQrCodeDosesData(
               data?.value !== "" ? data.value : []
             )
           ).length === 0;
-        const values =  hasSelectedDoseEmpty
+        const values = hasSelectedDoseEmpty
           ? []
           : _.map(VACCINE_CARD_QR_CODE?.doseData || [], (doseConfig: any) => {
               const { ids, name } = doseConfig;
@@ -77,7 +77,7 @@ export function getQrCodeDosesData(
               );
               return `${name} : ${value}`;
             });
-            return _.join(_.flattenDeep(values), ", ")
+        return _.join(_.flattenDeep(values), ", ");
       })
     ),
     "\n "
@@ -87,27 +87,29 @@ export function getQrCodeDosesData(
 export function getVaccineCardBioData(
   selectedVaccinationCard: VaccinationCard
 ) {
-  return _.map(VACCINE_CARD_BIO, (bioDataRow: any) => {
-    return _.map(bioDataRow, (bioData: any) => {
-      const { name, ids } = bioData;
-      const value = _.join(
-        _.filter(
-          _.flattenDeep(
-            _.map(ids, (id: string) => {
-              const cardData = _.find(
-                selectedVaccinationCard.headers,
-                (data: VaccinationCardHeader) => data?.id === id
-              );
-              return cardData && cardData.value ? cardData.value : "";
-            })
+  return _.flattenDeep(
+    _.map(VACCINE_CARD_BIO, (bioDataRow: any) => {
+      return _.map(bioDataRow, (bioData: any) => {
+        const { name, ids, id } = bioData;
+        const value = _.join(
+          _.filter(
+            _.flattenDeep(
+              _.map(ids, (id: string) => {
+                const cardData = _.find(
+                  selectedVaccinationCard.headers,
+                  (data: VaccinationCardHeader) => data?.id === id
+                );
+                return cardData && cardData.value ? cardData.value : "";
+              })
+            ),
+            (value: string) => value != ""
           ),
-          (value: string) => value != ""
-        ),
-        " "
-      );
-      return { name, value };
-    });
-  });
+          " "
+        );
+        return { id, name, value };
+      });
+    })
+  );
 }
 
 export function getDoseIndexes(selectedVaccinationCard: VaccinationCard) {
