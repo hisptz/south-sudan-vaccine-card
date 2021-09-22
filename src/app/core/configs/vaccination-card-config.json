@@ -66,6 +66,16 @@
       "isVisibleOnList": true
     },
     {
+      "id": "NfbmVFsS80D",
+      "displayName": "Other Names",
+      "name": "Other Names",
+      "isDataElement": false,
+      "isBoolean": false,
+      "isDate": false,
+      "isBioInfoCard": true,
+      "isVisibleOnList": false
+    },
+    {
       "id": "NI0QRzJvQ0k",
       "displayName": "Date of birth",
       "name": "Date Of Birth",
