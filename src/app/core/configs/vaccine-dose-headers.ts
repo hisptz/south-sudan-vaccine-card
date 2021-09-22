@@ -10,11 +10,19 @@ export const VACCINE_CARD_LOCATION = ["state", "country", "payam"];
 
 export const VACCINE_CARD_BIO = [
   [
-    { name: "Identification number", ids: ["KSr2yTdu1AI"] },
-    { name: "Full name", ids: ["sB1IHYu2xQT", "ENRjVGxVL6l"] },
-    { name: "Date of birth", ids: ["NI0QRzJvQ0k"] },
-    { name: "Age", ids: ["Rv8WM2mTuS5"] },
-    { name: "Gender", ids: ["oindugucx72"] },
+    {
+      id: "identificationNumber",
+      name: "Identification number",
+      ids: ["KSr2yTdu1AI"],
+    },
+    {
+      id: "fullName",
+      name: "Full name",
+      ids: ["sB1IHYu2xQT", "ENRjVGxVL6l", "NfbmVFsS80D"],
+    },
+    { id: "dateOfBirth", name: "Date of birth", ids: ["NI0QRzJvQ0k"] },
+    { id: "age", name: "Age", ids: ["Rv8WM2mTuS5"] },
+    { id: "gender", name: "Gender", ids: ["oindugucx72"] },
   ],
   [
     { name: "Phone #", ids: ["fctSQp5nAYl"] },
@@ -28,7 +36,7 @@ export const VACCINE_CARD_BIO = [
 export const VACCINE_CARD_QR_CODE = {
   bioData: [
     { name: "Identification number", ids: ["KSr2yTdu1AI"] },
-    { name: "Full name", ids: ["sB1IHYu2xQT", "ENRjVGxVL6l"] },
+    { name: "Full name", ids: ["sB1IHYu2xQT", "ENRjVGxVL6l", "NfbmVFsS80D"] },
     { name: "Date of birth", ids: ["NI0QRzJvQ0k"] },
     { name: "Age", ids: ["Rv8WM2mTuS5"] },
     { name: "Gender", ids: ["oindugucx72"] },
