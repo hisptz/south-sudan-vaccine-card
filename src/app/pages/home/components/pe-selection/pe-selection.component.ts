@@ -21,14 +21,14 @@ export class PeSelectionComponent implements OnInit {
     this.periodFilterConfig = {
       singleSelection: false,
       emitOnSelection: false,
-      allowDateRangeSelection: false,
-      allowRelativePeriodSelection: true,
-      allowFixedPeriodSelection: true,
+      allowDateRangeSelection: true,
+      allowRelativePeriodSelection: false,
+      allowFixedPeriodSelection: false,
       contentHeight: "400px",
     };
   }
 
-  onFilterUpdate(selectedPeriods, action: string) {
+  onFilterUpdate(selectedPeriods :any, action: string) {
     this.dialogRef.close({
       selectedPeriods,
       action,

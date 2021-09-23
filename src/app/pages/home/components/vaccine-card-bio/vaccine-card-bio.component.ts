@@ -31,10 +31,9 @@ export class VaccineCardBioComponent implements OnInit {
         vaccineCardBioData,
         "fullName"
       );
-      this.dateOfBirth = new Date(this.getVaccineCardBioDataByKey(
-        vaccineCardBioData,
-        "dateOfBirth"
-      )).toDateString();
+      this.dateOfBirth = new Date(
+        this.getVaccineCardBioDataByKey(vaccineCardBioData, "dateOfBirth")
+      ).toDateString();
       this.identificationNumber = this.getVaccineCardBioDataByKey(
         vaccineCardBioData,
         "identificationNumber"
