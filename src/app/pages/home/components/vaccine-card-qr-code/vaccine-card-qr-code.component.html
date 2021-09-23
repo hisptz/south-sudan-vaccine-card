@@ -3,7 +3,9 @@
 		<div class="col vaccine-card-qr-code">
 			<div *ngIf="selectedVaccinationCard">
 				<div>Scan to validate</div>
-				<qr-code [value]="qrdCode" padding="5" size="140"> </qr-code>
+				<div style="padding-left: 50px">
+					<qr-code [value]="qrdCode" padding="5" size="250"> </qr-code>
+				</div>
 			</div>
 			<div class="vaccine-card-note vaccine-card-qr-code-note">
 				<p>
