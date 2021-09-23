@@ -5,6 +5,13 @@
 				<span class="item-title">Selected Organisation Units: </span>
 				<span>{{ selectedOrgUnits | selectionName }}</span>
 			</div>
+			<div class="card-item">
+				<span class="item-title">Selected Period: </span>
+				<span *ngIf="selectedPeriods.length > 0">
+					{{ selectedPeriods | selectionName }}</span
+				>
+				<span *ngIf="selectedPeriods.length == 0"> All period</span>
+			</div>
 		</div>
 	</mat-card-content>
 </mat-card>
