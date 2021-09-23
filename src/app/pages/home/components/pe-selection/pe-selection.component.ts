@@ -28,7 +28,7 @@ export class PeSelectionComponent implements OnInit {
     };
   }
 
-  onFilterUpdate(selectedPeriods :any, action: string) {
+  onFilterUpdate(selectedPeriods: any, action: string) {
     this.dialogRef.close({
       selectedPeriods,
       action,

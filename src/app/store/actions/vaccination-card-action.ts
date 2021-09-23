@@ -18,6 +18,7 @@ export const LoadVaccinationCardData = createAction(
   props<{
     vaccinationCardConfigs: any;
     selectedOrgUnits: any;
+    selectedPeriods: any;
   }>()
 );
 
