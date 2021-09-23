@@ -11,7 +11,6 @@ import {
   LoadVaccinationCardData,
   LoadVaccinationCardDataById,
   LoadVaccinationCardDataFail,
-  SetSelectedVaccinationCard,
   UpdateVaccinationCardDataProgress,
 } from "../actions";
 import { Store } from "@ngrx/store";
@@ -125,9 +124,14 @@ export class VaccinationCardDataEffects {
   }
 
   getVaccinationCardDataFromServer(parameters: any) {
-    const { vaccinationCardConfigs, selectedOrgUnits } = parameters;
+    const { vaccinationCardConfigs, selectedOrgUnits, selectedPeriods } =
+      parameters;
     return new Observable((observer) => {
-      this.getAllVaccinationCardData(vaccinationCardConfigs, selectedOrgUnits)
+      this.getAllVaccinationCardData(
+        vaccinationCardConfigs,
+        selectedOrgUnits,
+        selectedPeriods
+      )
         .then((data) => {
           observer.next(data);
           observer.complete();
@@ -138,12 +142,32 @@ export class VaccinationCardDataEffects {
 
   async getAllVaccinationCardData(
     vaccinationCardConfigs: any,
-    selectedOrgUnits: Array<any>
+    selectedOrgUnits: Array<any>,
+    selectedPeriods: Array<any>
   ) {
     const pageSize = 15;
     const vaccinationCardData = [];
     const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,programStage,dataValues[dataElement,value]]]`;
     const urlsWithPaginations = [];
+    const filter = _.join(
+      _.uniq(
+        _.flattenDeep(
+          _.map(selectedPeriods, (period: any) => {
+            const { type, endDate, startDate } = period;
+            return startDate &&
+              endDate &&
+              startDate.id &&
+              endDate.id &&
+              type &&
+              `${type}`.toLowerCase() == "dates-range"
+              ? `&lastUpdatedStartDate=${startDate.id}&lastUpdatedEndDate=${endDate.id}`
+              : "";
+          })
+        )
+      ),
+      ""
+    );
+    console.log({ selectedPeriods, filter });
     try {
       let totalOverAllProcess = 0;
       let overAllProcessCount = 0;
@@ -156,7 +180,7 @@ export class VaccinationCardDataEffects {
       );
       for (const selectedOrgUnit of selectedOrgUnits) {
         if (selectedOrgUnit && selectedOrgUnit.id) {
-          const url = `trackedEntityInstances.json?ou=${selectedOrgUnit.id}&ouMode=DESCENDANTS&program=${program}`;
+          const url = `trackedEntityInstances.json?ou=${selectedOrgUnit.id}&ouMode=DESCENDANTS&program=${program}${filter}`;
           const response: any = await this.getPaginationFiltersForTrackerData(
             url,
             pageSize
