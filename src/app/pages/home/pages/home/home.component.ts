@@ -19,6 +19,7 @@ import {
   LoadVaccinationCardData,
   SetSelectedVaccinationCard,
 } from "src/app/store/actions";
+import { PeSelectionComponent } from "../../components/pe-selection/pe-selection.component";
 
 @Component({
   selector: "app-home",
@@ -27,6 +28,7 @@ import {
 })
 export class HomeComponent implements OnInit {
   selectedOrgUnits: Array<any>;
+  selectedPeriods: Array<any>;
   isLoading$: Observable<boolean>;
   shouldGenerateReport: boolean;
 
@@ -35,10 +37,12 @@ export class HomeComponent implements OnInit {
     private store: Store<State>,
     private router: Router,
     private snackbar: MatSnackBar
-  ) {}
+  ) {
+    this.isLoading$ = this.store.select(getVaccinationCardDataLoadingStatus);
+  }
 
   ngOnInit() {
-    this.isLoading$ = this.store.select(getVaccinationCardDataLoadingStatus);
+    this.selectedPeriods = [];
     this.store
       .select(getCurrentUserOrganisationUnits)
       .subscribe((userOrganisationUnits) => {
@@ -78,6 +82,24 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  openPeriodFilter() {
+    const width = "800px";
+    const height = "400px";
+    const selectionDialog = this.dialog.open(PeSelectionComponent, {
+      width,
+      height,
+      data: {
+        selectedPeriods: this.selectedPeriods,
+      },
+    });
+    selectionDialog.afterClosed().subscribe((dialogData: any) => {
+      if (dialogData && dialogData.action && dialogData.action === "UPDATE") {
+        this.selectedPeriods =
+          dialogData.selectedPeriods.items || this.selectedPeriods;
+      }
+    });
+  }
+
   openGenerateReport() {
     this.store.dispatch(ClearVaccinationCardData());
     this.store.dispatch(
@@ -89,6 +111,7 @@ export class HomeComponent implements OnInit {
           programStage: vaccinationCardConfigs.programStageId,
         },
         selectedOrgUnits: this.selectedOrgUnits,
+        selectedPeriods: this.selectedPeriods,
       })
     );
   }
