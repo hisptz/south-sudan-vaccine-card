@@ -11,7 +11,10 @@ import {
   LoadVaccinationCardDataById,
   AddVaccinationCardDataById,
 } from "../actions/vaccination-card-action";
-import { initialVaccinationCardState, VaccinationCardState } from "../states/vaccination-card.state";
+import {
+  initialVaccinationCardState,
+  VaccinationCardState,
+} from "../states/vaccination-card.state";
 import {
   loadingBaseState,
   loadedBaseState,

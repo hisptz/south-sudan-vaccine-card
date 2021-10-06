@@ -25,7 +25,7 @@ export const reducers: ActionReducerMap<State> = {
   systemInfo: systemInfoReducer,
   router: routerReducer,
   vaccinationCard: vaccinationCardDataReducer,
-  orgninisationUnit : organisationUnitReducer
+  orgninisationUnit: organisationUnitReducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production

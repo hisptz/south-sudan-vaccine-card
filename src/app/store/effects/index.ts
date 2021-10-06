@@ -6,5 +6,6 @@ import { OrganisationUnitsEffects } from "./organisation-unit.effects";
 export const effects: any[] = [
   UserEffects,
   SystemInfoEffects,
-  VaccinationCardDataEffects,OrganisationUnitsEffects,
+  VaccinationCardDataEffects,
+  OrganisationUnitsEffects,
 ];

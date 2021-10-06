@@ -6,8 +6,15 @@ import {
   loadedBaseState,
   errorBaseState,
 } from "../states/base.state";
-import { initialOrganisationUnitState, OrganisationUnitState } from "../states/organisation-unit.state";
-import { AddOrganisationUnitData, LoadOrganisationUnit, LoadOrganisationUnitFail } from "../actions";
+import {
+  initialOrganisationUnitState,
+  OrganisationUnitState,
+} from "../states/organisation-unit.state";
+import {
+  AddOrganisationUnitData,
+  LoadOrganisationUnit,
+  LoadOrganisationUnitFail,
+} from "../actions";
 
 export const reducer = createReducer(
   initialOrganisationUnitState,

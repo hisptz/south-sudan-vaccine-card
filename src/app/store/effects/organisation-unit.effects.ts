@@ -4,8 +4,11 @@ import { Actions, createEffect, ofType, OnInitEffects } from "@ngrx/effects";
 import { of } from "rxjs";
 import { catchError, map, switchMap } from "rxjs/operators";
 import { OrganisationUnit } from "src/app/core/models/organisation-unit";
-import { AddOrganisationUnitData, LoadOrganisationUnit, LoadOrganisationUnitFail } from "../actions";
-
+import {
+  AddOrganisationUnitData,
+  LoadOrganisationUnit,
+  LoadOrganisationUnitFail,
+} from "../actions";
 
 @Injectable()
 export class OrganisationUnitsEffects implements OnInitEffects {
@@ -13,10 +16,16 @@ export class OrganisationUnitsEffects implements OnInitEffects {
     this.actions$.pipe(
       ofType(LoadOrganisationUnit),
       switchMap(() =>
-        this.httpClient.get('organisationUnits.json?fields=id,name,level,ancestors[name,level]&paging=false').pipe(
-          map((OrganisationUnits: Array<OrganisationUnit>) => AddOrganisationUnitData({ OrganisationUnits })),
-          catchError((error: any) => of(LoadOrganisationUnitFail({ error })))
-        )
+        this.httpClient
+          .get(
+            "organisationUnits.json?fields=id,name,level,ancestors[name,level]&paging=false"
+          )
+          .pipe(
+            map((OrganisationUnits: Array<OrganisationUnit>) =>
+              AddOrganisationUnitData({ OrganisationUnits })
+            ),
+            catchError((error: any) => of(LoadOrganisationUnitFail({ error })))
+          )
       )
     )
   );
