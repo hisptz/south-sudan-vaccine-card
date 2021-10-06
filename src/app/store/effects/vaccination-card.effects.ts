@@ -167,7 +167,6 @@ export class VaccinationCardDataEffects {
       ),
       ""
     );
-    console.log({ selectedPeriods, filter });
     try {
       let totalOverAllProcess = 0;
       let overAllProcessCount = 0;

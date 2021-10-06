@@ -1,10 +1,6 @@
 import { createSelector } from "@ngrx/store";
-import {
-  VaccinationCard,
-  VaccinationCardHeader,
-} from "src/app/core/models/vaccination-card";
 import { getRootState, State } from "../reducers";
-import { VaccinationCardState } from "../states/vaccination-card-state";
+import { VaccinationCardState } from "../states/vaccination-card.state";
 import * as _ from "lodash";
 
 export const getVaccinationCardDataState = createSelector(
