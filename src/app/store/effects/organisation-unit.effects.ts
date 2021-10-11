@@ -19,10 +19,10 @@ export class OrganisationUnitsEffects implements OnInitEffects {
         this.httpClient
           .get(
             "organisationUnits.json?fields=id,name,level,ancestors[name,level]&paging=false"
-          )
+          ).pipe(map(response=> response.organisationUnits || []))
           .pipe(
-            map((OrganisationUnits: Array<OrganisationUnit>) =>
-              AddOrganisationUnitData({ OrganisationUnits })
+            map((organisationUnits: Array<OrganisationUnit>) =>
+              AddOrganisationUnitData({ organisationUnits })
             ),
             catchError((error: any) => of(LoadOrganisationUnitFail({ error })))
           )

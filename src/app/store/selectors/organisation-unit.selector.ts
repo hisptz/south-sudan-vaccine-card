@@ -9,18 +9,19 @@ export const getOrganisationUnitState = createSelector(
   (state: State) => state.orgninisationUnit
 );
 
-export const getOrganisationUnitList = (searchedText: string) =>
+export const getOrganisationUnitList =
   createSelector(getOrganisationUnitState, (state: OrganisationUnitState) => {
-    searchedText = searchedText.trim();
-    return searchedText !== ""
-      ? _.filter(
-          state.OrganisationUnits || [],
-          (organisationUnit: OrganisationUnit) =>
-            organisationUnit &&
-            organisationUnit.name &&
-            `${organisationUnit.name}`.includes(searchedText)
-        )
-      : [];
+    const searchedText = state.searchKey.trim();
+    const organisationUnits = searchedText !== ""
+    ? _.filter(
+        state.organisationUnits || [],
+        (organisationUnit: OrganisationUnit) =>
+          organisationUnit &&
+          organisationUnit.name &&
+          `${organisationUnit.name}`.includes(searchedText)
+      )
+    : [];
+    return organisationUnits;
   });
 
 export const getOrganisationUnitLoadingStatus = createSelector(

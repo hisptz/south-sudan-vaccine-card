@@ -14,6 +14,7 @@ import {
   AddOrganisationUnitData,
   LoadOrganisationUnit,
   LoadOrganisationUnitFail,
+  SearchOrganisationUnit,
 } from "../actions";
 
 export const reducer = createReducer(
@@ -23,10 +24,15 @@ export const reducer = createReducer(
     ...initialOrganisationUnitState,
     ...loadingBaseState,
   })),
-  on(AddOrganisationUnitData, (state, { OrganisationUnits }) => ({
+  on(SearchOrganisationUnit, (state, { searchText }) => ({
     ...state,
     ...loadedBaseState,
-    OrganisationUnits,
+    searchKey : searchText,
+  })),
+  on(AddOrganisationUnitData, (state, { organisationUnits }) => ({
+    ...state,
+    ...loadedBaseState,
+    organisationUnits,
   })),
   on(LoadOrganisationUnitFail, (state, { error }) => ({
     ...state,
