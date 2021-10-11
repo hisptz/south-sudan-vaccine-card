@@ -1,8 +1,25 @@
-<h2>Location filter</h2>
-<hr />
-<ngx-dhis2-org-unit-filter
-  [selectedOrgUnitItems]="selectionDialogData.selectedOrgUnitItems"
-  [orgUnitFilterConfig]="orgUnitFilterConfig"
-  (orgUnitClose)="onFilterUpdate($event, 'CLOSE')"
-  (orgUnitUpdate)="onFilterUpdate($event, 'UPDATE')"
-></ngx-dhis2-org-unit-filter>
+<div>
+	<h2>Location filter</h2>
+	<mat-form-field class="example-full-width">
+		<input
+			type="text"
+			[(ngModel)]="searchText"
+			(keyup)="onSeachingOrganisationUnit()"
+			matInput
+			placeholder="Search"
+		/>
+	</mat-form-field>
+
+	<div *ngIf="(organisationUnits$ | async).length && searchText !== ''">
+		{{ (organisationUnits$ | async).length }}
+	</div>
+
+	<div *ngIf="!((organisationUnits$ | async).length && searchText !== '')">
+		<ngx-dhis2-org-unit-filter
+			[selectedOrgUnitItems]="selectedOrgUnitItems"
+			[orgUnitFilterConfig]="orgUnitFilterConfig"
+			(orgUnitClose)="onFilterUpdate($event, 'CLOSE')"
+			(orgUnitUpdate)="onFilterUpdate($event, 'UPDATE')"
+		></ngx-dhis2-org-unit-filter>
+	</div>
+</div>
