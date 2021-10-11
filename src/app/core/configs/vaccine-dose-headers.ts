@@ -3,7 +3,7 @@ export const VACCINE_CARD_DOSES_HEADERS = [
   "Yp1F4txx8tm",
   "LUIsbsm3okG",
   "eventDate",
-  "eRi9ifg9v5h",
+  "orgUnitName",
 ];
 
 export const VACCINE_CARD_LOCATION = ["state", "country", "payam"];

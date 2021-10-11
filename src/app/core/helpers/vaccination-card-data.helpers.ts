@@ -7,7 +7,6 @@ export function getProgressPercentage(numerator: number, denominator: number) {
   return parseInt(percentageValue, 10);
 }
 
-//@TODO rogram metadata
 export function getSanitizedVaccinationCardData(
   teiResponse: any,
   organisationUnits: Array<any>,
@@ -156,10 +155,16 @@ function getValueFromEventDataValue(
   value: string
 ) {
   const dataValueObj = _.find(
-    _.concat(vaccineDose.dataValues || [], {
-      dataElement: "eventDate",
-      value: vaccineDose.eventDate || "",
-    }),
+    _.concat(vaccineDose.dataValues || [], [
+      {
+        dataElement: "eventDate",
+        value: vaccineDose.eventDate || "",
+      },
+      {
+        dataElement: "orgUnitName",
+        value: vaccineDose.orgUnitName || "",
+      },
+    ]),
     (data: any) =>
       data && data.dataElement && data.dataElement == headerConfig.id
   );

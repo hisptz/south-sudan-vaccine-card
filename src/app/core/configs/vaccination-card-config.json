@@ -200,7 +200,7 @@
       "doseIndex": 0
     },
     {
-      "id": "eRi9ifg9v5h",
+      "id": "orgUnitName",
       "displayName": "",
       "name": "Place of Vaccination",
       "isDataElement": true,
@@ -255,7 +255,7 @@
       "doseIndex": 1
     },
     {
-      "id": "eRi9ifg9v5h",
+      "id": "orgUnitName",
       "displayName": "",
       "name": "Place of Vaccination",
       "isDataElement": true,
@@ -310,7 +310,7 @@
       "doseIndex": 2
     },
     {
-      "id": "eRi9ifg9v5h",
+      "id": "orgUnitName",
       "displayName": "",
       "name": "Place of Vaccination",
       "isDataElement": true,
