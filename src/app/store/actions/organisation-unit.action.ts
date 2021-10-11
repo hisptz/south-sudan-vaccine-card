@@ -6,7 +6,7 @@ export enum OrganisationUnitActionTypes {
   LoadOrganisationUnit = "[Organisation Unit] Load organisation Data",
   AddOrganisationUnitData = "[Organisation Unit] Add organisation unit data",
   LoadOrganisationUnitFail = "[Organisation Unit] load organisation unit data fail",
-  SearchOrganisationUnit = "[Organisation Unit] On searching organisation unit"
+  SearchOrganisationUnit = "[Organisation Unit] On searching organisation unit",
 }
 
 export const LoadOrganisationUnit = createAction(
@@ -20,9 +20,8 @@ export const AddOrganisationUnitData = createAction(
 
 export const SearchOrganisationUnit = createAction(
   OrganisationUnitActionTypes.SearchOrganisationUnit,
-  props<{ searchText:string  }>()
+  props<{ searchText: string }>()
 );
-
 
 export const LoadOrganisationUnitFail = createAction(
   OrganisationUnitActionTypes.LoadOrganisationUnitFail,

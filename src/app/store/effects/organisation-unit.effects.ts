@@ -19,7 +19,8 @@ export class OrganisationUnitsEffects implements OnInitEffects {
         this.httpClient
           .get(
             "organisationUnits.json?fields=id,name,level,ancestors[name,level]&paging=false"
-          ).pipe(map(response=> response.organisationUnits || []))
+          )
+          .pipe(map((response) => response.organisationUnits || []))
           .pipe(
             map((organisationUnits: Array<OrganisationUnit>) =>
               AddOrganisationUnitData({ organisationUnits })

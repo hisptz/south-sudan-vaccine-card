@@ -27,7 +27,7 @@ export const reducer = createReducer(
   on(SearchOrganisationUnit, (state, { searchText }) => ({
     ...state,
     ...loadedBaseState,
-    searchKey : searchText,
+    searchKey: searchText,
   })),
   on(AddOrganisationUnitData, (state, { organisationUnits }) => ({
     ...state,
