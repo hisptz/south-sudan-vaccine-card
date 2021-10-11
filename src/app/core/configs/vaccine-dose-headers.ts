@@ -45,6 +45,6 @@ export const VACCINE_CARD_QR_CODE = {
   doseData: [
     { name: "Vaccine", ids: ["bbnyNYD1wgS"] },
     { name: "Date", ids: ["eventDate"] },
-    { name: "Place", ids: ["eRi9ifg9v5h"] },
+    { name: "Place", ids: ["orgUnitName"] },
   ],
 };
