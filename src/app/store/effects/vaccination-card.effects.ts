@@ -78,7 +78,7 @@ export class VaccinationCardDataEffects {
     seletectedTeiId: string
   ) {
     const vaccinationCardData = [];
-    const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,programStage,dataValues[dataElement,value]]]`;
+    const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,orgUnitName,programStage,dataValues[dataElement,value]]]`;
     try {
       const { headerConfigs, program, programStage } = vaccinationCardConfigs;
       const programMetadata: any = await this.getProgramMetadata(
@@ -145,9 +145,9 @@ export class VaccinationCardDataEffects {
     selectedOrgUnits: Array<any>,
     selectedPeriods: Array<any>
   ) {
-    const pageSize = 15;
+    const pageSize = 100;
     const vaccinationCardData = [];
-    const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,programStage,dataValues[dataElement,value]]]`;
+    const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,orgUnitName,programStage,dataValues[dataElement,value]]]`;
     const urlsWithPaginations = [];
     const filter = _.join(
       _.uniq(
@@ -167,7 +167,6 @@ export class VaccinationCardDataEffects {
       ),
       ""
     );
-    console.log({ selectedPeriods, filter });
     try {
       let totalOverAllProcess = 0;
       let overAllProcessCount = 0;
