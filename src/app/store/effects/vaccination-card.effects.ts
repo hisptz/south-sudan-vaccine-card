@@ -145,7 +145,7 @@ export class VaccinationCardDataEffects {
     selectedOrgUnits: Array<any>,
     selectedPeriods: Array<any>
   ) {
-    const pageSize = 15;
+    const pageSize = 100;
     const vaccinationCardData = [];
     const fields = `fields=trackedEntityInstance,attributes[attribute,value],enrollments[program,orgUnit,events[eventDate,orgUnitName,programStage,dataValues[dataElement,value]]]`;
     const urlsWithPaginations = [];
