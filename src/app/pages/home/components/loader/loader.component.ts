@@ -5,7 +5,7 @@ import { State } from "src/app/store/reducers";
 import {
   getCurrentOverAllProgress,
   getCurrentBufferProgress,
-} from "src/app/store/selectors/vaccination-card-selector";
+} from "src/app/store/selectors/vaccination-card.selector";
 
 @Component({
   selector: "app-loader",

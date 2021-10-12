@@ -15,7 +15,7 @@ import {
   getVaccinationCardDataError,
   getVaccinationCardDataLoadingStatus,
   getVaccinationCardList,
-} from "src/app/store/selectors/vaccination-card-selector";
+} from "src/app/store/selectors/vaccination-card.selector";
 
 @Component({
   selector: "app-report-view",
