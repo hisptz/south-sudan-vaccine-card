@@ -3,7 +3,7 @@ export const VACCINE_CARD_DOSES_HEADERS = [
   "Yp1F4txx8tm",
   "LUIsbsm3okG",
   "eventDate",
-  "eRi9ifg9v5h",
+  "orgUnitName",
 ];
 
 export const VACCINE_CARD_LOCATION = ["state", "country", "payam"];
@@ -45,6 +45,6 @@ export const VACCINE_CARD_QR_CODE = {
   doseData: [
     { name: "Vaccine", ids: ["bbnyNYD1wgS"] },
     { name: "Date", ids: ["eventDate"] },
-    { name: "Place", ids: ["eRi9ifg9v5h"] },
+    { name: "Place", ids: ["orgUnitName"] },
   ],
 };
