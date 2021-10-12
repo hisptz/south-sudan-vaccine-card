@@ -31,18 +31,21 @@ export class OrganisationUnitsEffects implements OnInitEffects {
                     name,
                     level,
                   });
-                  const diplayName = _.join(
+                  const displayName = _.join(
                     _.uniq(
                       _.filter(
                         _.flattenDeep(
-                          _.map(ancestors, (ancestor:any) => ancestor.name || "")
+                          _.map(
+                            ancestors,
+                            (ancestor: any) => ancestor.name || ""
+                          )
                         ),
-                        (name :string) => name !== ""
+                        (name: string) => name !== ""
                       )
                     ),
                     " > "
                   );
-                  return { ...organisationUnit, diplayName };
+                  return { ...organisationUnit, displayName };
                 }
               );
             })

@@ -13,7 +13,9 @@
 					onSelectSearchedOrganisationUnit($event, filteredOrganisationUnit)
 				"
 			>
-				{{ filteredOrganisationUnit.name }}
+				<div title="{{ filteredOrganisationUnit.displayName }}">
+					{{ filteredOrganisationUnit.name }}
+				</div>
 			</div>
 		</div>
 	</div>

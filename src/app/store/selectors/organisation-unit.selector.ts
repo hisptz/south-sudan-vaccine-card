@@ -23,7 +23,7 @@ export const getOrganisationUnitList = createSelector(
               `${organisationUnit.name}`.toLowerCase().includes(searchedText)
           )
         : [];
-    return organisationUnits;
+    return _.sortBy(organisationUnits, ["displayName"]);
   }
 );
 
@@ -31,7 +31,6 @@ export const isSearchingOrganisationUnitActive = createSelector(
   getOrganisationUnitState,
   (state: OrganisationUnitState) => state.searchKey !== ""
 );
-
 
 export const getOrganisationUnitLoadingStatus = createSelector(
   getOrganisationUnitState,
