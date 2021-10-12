@@ -12,7 +12,7 @@ export const getOrganisationUnitState = createSelector(
 export const getOrganisationUnitList = createSelector(
   getOrganisationUnitState,
   (state: OrganisationUnitState) => {
-    const searchedText = state.searchKey.trim();
+    const searchedText = state.searchKey.trim().toLowerCase();
     const organisationUnits =
       searchedText !== ""
         ? _.filter(
@@ -20,7 +20,7 @@ export const getOrganisationUnitList = createSelector(
             (organisationUnit: OrganisationUnit) =>
               organisationUnit &&
               organisationUnit.name &&
-              `${organisationUnit.name}`.includes(searchedText)
+              `${organisationUnit.name}`.toLowerCase().includes(searchedText)
           )
         : [];
     return organisationUnits;
