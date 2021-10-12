@@ -1,5 +1,25 @@
-filteredOrganisationUnits : {{ filteredOrganisationUnits.length }}
-<div class="row">
+<div *ngIf="isSeachingActive" class="row organisation-unit-search-container">
+	<div *ngIf="isOrganisationUnitLoading">
+		Discovering organisation unit for searching please wait
+	</div>
+	<div class="col-12 mt-2">
+		<div *ngIf="filteredOrganisationUnits.length === 0">
+			There are no matched organisation unit
+		</div>
+		<div *ngFor="let filteredOrganisationUnit of filteredOrganisationUnits">
+			<div
+				class="organisation-unit-search-item"
+				(click)="
+					onSelectSearchedOrganisationUnit($event, filteredOrganisationUnit)
+				"
+			>
+				{{ filteredOrganisationUnit.name }}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" *ngIf="!isSeachingActive">
 	<!--user organisation unit selection options-->
 	<div class="col-12 mt-2" *ngIf="orgUnitFilterConfig.showUserOrgUnitSection">
 		<ngx-dhis2-user-org-unit-selection

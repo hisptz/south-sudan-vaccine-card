@@ -47,6 +47,8 @@ import { OrgUnitTypes } from "../../constants/org-unit-types.constants";
 export class NgxDhis2OrgUnitFilterComponent implements OnInit, OnDestroy {
   @Input() selectedOrgUnitItems: any[];
   @Input() filteredOrganisationUnits: any[];
+  @Input() isSeachingActive :boolean;
+  @Input() isOrganisationUnitLoading :boolean;
   @Input() orgUnitFilterConfig: OrgUnitFilterConfig;
   orgUnitLevels$: Observable<OrgUnitLevel[]>;
   orgUnitGroups$: Observable<OrgUnitGroup[]>;
@@ -79,7 +81,6 @@ export class NgxDhis2OrgUnitFilterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Set orgUnit filter configuration
-    console.log("Here on ou filter");
     this.orgUnitFilterConfig = {
       ...DEFAULT_ORG_UNIT_FILTER_CONFIG,
       ...(this.orgUnitFilterConfig || {}),
@@ -134,6 +135,13 @@ export class NgxDhis2OrgUnitFilterComponent implements OnInit, OnDestroy {
         )
       )
     );
+  }
+
+  onSelectSearchedOrganisationUnit(e, orgUnit: any){
+    orgUnit = {...orgUnit, type : "ORGANISATION_UNIT"}
+    this.selectedOrgUnitItems = [];
+    this.onSelectOrgUnit(orgUnit);
+    this.onUpdate(e);
   }
 
   onSelectOrgUnit(orgUnit: any) {
