@@ -23,7 +23,7 @@ export const getOrganisationUnitList = createSelector(
               `${organisationUnit.name}`.toLowerCase().includes(searchedText)
           )
         : [];
-    return _.sortBy(organisationUnits, ["displayName"]);
+    return _.sortBy(organisationUnits, ["name"]);
   }
 );
 
