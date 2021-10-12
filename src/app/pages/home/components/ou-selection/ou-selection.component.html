@@ -10,12 +10,9 @@
 		/>
 	</mat-form-field>
 
-	<div *ngIf="(organisationUnits$ | async).length && searchText !== ''">
-		{{ (organisationUnits$ | async).length }}
-	</div>
-
-	<div *ngIf="!((organisationUnits$ | async).length && searchText !== '')">
+	<div>
 		<ngx-dhis2-org-unit-filter
+			[filteredOrganisationUnits]="organisationUnits$ | async"
 			[selectedOrgUnitItems]="selectedOrgUnitItems"
 			[orgUnitFilterConfig]="orgUnitFilterConfig"
 			(orgUnitClose)="onFilterUpdate($event, 'CLOSE')"

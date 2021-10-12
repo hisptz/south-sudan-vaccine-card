@@ -46,6 +46,7 @@ import { OrgUnitTypes } from "../../constants/org-unit-types.constants";
 })
 export class NgxDhis2OrgUnitFilterComponent implements OnInit, OnDestroy {
   @Input() selectedOrgUnitItems: any[];
+  @Input() filteredOrganisationUnits: any[];
   @Input() orgUnitFilterConfig: OrgUnitFilterConfig;
   orgUnitLevels$: Observable<OrgUnitLevel[]>;
   orgUnitGroups$: Observable<OrgUnitGroup[]>;
