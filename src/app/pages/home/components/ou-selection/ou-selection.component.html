@@ -13,6 +13,8 @@
 	<div>
 		<ngx-dhis2-org-unit-filter
 			[filteredOrganisationUnits]="organisationUnits$ | async"
+			[isSeachingActive]="isSeachingActive$ | async"
+			[isOrganisationUnitLoading]="isOrganisationUnitLoading$ | async"
 			[selectedOrgUnitItems]="selectedOrgUnitItems"
 			[orgUnitFilterConfig]="orgUnitFilterConfig"
 			(orgUnitClose)="onFilterUpdate($event, 'CLOSE')"

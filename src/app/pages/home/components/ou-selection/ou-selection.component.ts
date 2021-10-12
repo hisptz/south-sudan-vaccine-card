@@ -6,7 +6,7 @@ import { OrganisationUnit } from "src/app/core/models/organisation-unit";
 import { OrgUnitFilterConfig } from "src/app/ngx-dhis2-org-unit-filter/models/org-unit-filter-config.model";
 import { SearchOrganisationUnit } from "src/app/store/actions";
 import { State } from "src/app/store/reducers";
-import { getOrganisationUnitList } from "src/app/store/selectors";
+import { getOrganisationUnitList, isSearchingOrganisationUnitActive,getOrganisationUnitLoadingStatus } from "src/app/store/selectors";
 
 @Component({
   selector: "app-ou-selection",
@@ -18,6 +18,8 @@ export class OuSelectionComponent implements OnInit {
   selectedOrgUnitItems = [];
   searchText: string = "";
   organisationUnits$: Observable<Array<OrganisationUnit>>;
+  isSeachingActive$ :Observable<boolean>;
+  isOrganisationUnitLoading$ :Observable<boolean>
 
   constructor(
     private dialogRef: MatDialogRef<OuSelectionComponent>,
@@ -25,6 +27,8 @@ export class OuSelectionComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public selectionDialogData: any
   ) {
     this.organisationUnits$ = this.store.select(getOrganisationUnitList);
+    this.isSeachingActive$ = this.store.select(isSearchingOrganisationUnitActive);
+    this.isOrganisationUnitLoading$ = this.store.select(getOrganisationUnitLoadingStatus);
   }
 
   onSeachingOrganisationUnit() {
@@ -35,7 +39,6 @@ export class OuSelectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedOrgUnitItems = this.selectionDialogData.selectedOrgUnitItems;
-    console.log({ selectedOrgUnitItems: this.selectedOrgUnitItems });
     this.orgUnitFilterConfig = {
       singleSelection: false,
       showUserOrgUnitSection: false,

@@ -27,6 +27,12 @@ export const getOrganisationUnitList = createSelector(
   }
 );
 
+export const isSearchingOrganisationUnitActive = createSelector(
+  getOrganisationUnitState,
+  (state: OrganisationUnitState) => state.searchKey !== ""
+);
+
+
 export const getOrganisationUnitLoadingStatus = createSelector(
   getOrganisationUnitState,
   (state: OrganisationUnitState) => state.loading
