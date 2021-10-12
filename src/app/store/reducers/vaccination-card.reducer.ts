@@ -14,7 +14,7 @@ import {
 import {
   initialVaccinationCardState,
   VaccinationCardState,
-} from "../states/vaccination-card-state";
+} from "../states/vaccination-card.state";
 import {
   loadingBaseState,
   loadedBaseState,
