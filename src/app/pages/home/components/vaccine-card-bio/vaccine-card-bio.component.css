@@ -1,56 +1,56 @@
 .vaccine-card-bio-container {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 .vaccine-card-bio-info {
-	font-size: 1.2rem;
-	text-align: left;
-	padding-right: 20px;
-	padding-left: 20px;
-	overflow-wrap: break-word;
+  font-size: 1.2rem;
+  text-align: left;
+  padding-right: 20px;
+  padding-left: 20px;
+  overflow-wrap: break-word;
 }
 .vaccine-card-bio-location {
-	text-align: center;
-	font-size: 1.2rem;
-	padding-top: 15px;
-	padding-bottom: 15px;
+  text-align: center;
+  font-size: 1.2rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .horizontal-line {
-	border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .vaccine-card-bio-value {
-	font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .vaccine-card-bio-title {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 tbody {
-	display: block;
-	overflow-y: auto;
-	overflow-x: hidden;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 thead,
 tbody tr {
-	display: table;
-	width: 100%;
-	table-layout: fixed;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 th,
 td {
-	padding-left: 10px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	word-wrap: break-word;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  word-wrap: break-word;
 }
 
 th {
-	text-align: center;
+  text-align: center;
 }
 
 table {
-	width: 100%;
+  width: 100%;
 }
