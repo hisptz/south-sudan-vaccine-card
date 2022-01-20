@@ -18,8 +18,7 @@ export const VACCINE_CARD_BIO = [
     {
       id: "fullName",
       name: "Full name",
-      //ids: ["sB1IHYu2xQT", "NfbmVFsS80D", "ENRjVGxVL6l"], 
-      ids: ["sB1IHYu2xQT", "ENRjVGxVL6l", "NfbmVFsS80D"], //TODO change name order from "FirstName(sB1IHYu2xQT), OtherName(NfbmVFsS80D), Lastname(ENRjVGxVL6l)" to FirstName, Last Name, Other Name
+      ids: ["sB1IHYu2xQT", "ENRjVGxVL6l", "NfbmVFsS80D"],
     },
     { id: "dateOfBirth", name: "Date of birth", ids: ["NI0QRzJvQ0k"] },
     { id: "age", name: "Age", ids: ["Rv8WM2mTuS5"] },
@@ -37,7 +36,7 @@ export const VACCINE_CARD_BIO = [
 export const VACCINE_CARD_QR_CODE = {
   bioData: [
     { name: "Identification number", ids: ["KSr2yTdu1AI"] },
-    { name: "Full name", ids: ["sB1IHYu2xQT", "ENRjVGxVL6l", "NfbmVFsS80D"]},
+    { name: "Full name", ids: ["sB1IHYu2xQT", "ENRjVGxVL6l", "NfbmVFsS80D"] },
     { name: "Date of birth", ids: ["NI0QRzJvQ0k"] },
     { name: "Age", ids: ["Rv8WM2mTuS5"] },
     { name: "Gender", ids: ["oindugucx72"] },
