@@ -36,7 +36,7 @@ export const VACCINE_CARD_BIO = [
 export const VACCINE_CARD_QR_CODE = {
   bioData: [
     { name: "Identification number", ids: ["KSr2yTdu1AI"] },
-    { name: "Full name", ids:  ["sB1IHYu2xQT", "NfbmVFsS80D", "ENRjVGxVL6l"] },
+    { name: "Full name", ids: ["sB1IHYu2xQT", "NfbmVFsS80D", "ENRjVGxVL6l"] },
     { name: "Date of birth", ids: ["NI0QRzJvQ0k"] },
     { name: "Age", ids: ["Rv8WM2mTuS5"] },
     { name: "Gender", ids: ["oindugucx72"] },
